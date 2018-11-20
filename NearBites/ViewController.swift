@@ -56,10 +56,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Location Delgate and Request for authorization
+        //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 300
         
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
