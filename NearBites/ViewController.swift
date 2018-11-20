@@ -18,6 +18,7 @@ import UIKit
 import YelpAPI
 import Alamofire
 import CDYelpFusionKit
+import CoreLocation
 
 
 //Ulysses method
@@ -26,12 +27,18 @@ struct Business {
     let address: String
 }
 
-
 struct Businesses {
     var businesses = [CDYelpBusiness]()
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    
+    //Location manager
+    let locationManager = CLLocationManager()
+    //coordinates to hold
+    var longitude = 0.0
+    var latitude = 0.0
+    
     //holds all returned business from search
     var businessesReturned = Businesses()
     
@@ -41,13 +48,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var StarRating: UILabel!
     @IBOutlet weak var Distance: UILabel!
     
-    
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Location Delgate and Request for authorization
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 {
+            guard let latitude = locations.first?.coordinate.latitude else { return }
+            guard let longitude = locations.first?.coordinate.longitude else { return }
+            self.latitude = latitude
+            self.longitude = longitude
+        } else {
+            print("No coordinates")
+        }
     }
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
@@ -57,8 +80,8 @@ class ViewController: UIViewController {
         // Query Yelp Fusion API for business results
         yelpAPIClient.searchBusinesses(byTerm: "Mexican",
                                        location: "San Francisco",
-                                       latitude: 37.730740,
-                                       longitude: -122.405275,
+                                       latitude: self.latitude,
+                                       longitude: self.longitude,
                                        radius: 10000,
                                        categories: nil,
                                        locale: .english_unitedStates,
@@ -74,21 +97,17 @@ class ViewController: UIViewController {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
-                                            self.businessesReturned.businesses = businesses
-                                            for b in self.businessesReturned.businesses {
-                                                print(b.name)
-                                            }
-                                            
                                             var minDistance = 99999.99
                                             var closesBusiness = ""
                                             var moneySigns = ""
                                             var rating = 0.0
-                                            for business in businesses {
-                                                
+                                            
+                                            self.businessesReturned.businesses = businesses
+                                            for business in self.businessesReturned.businesses {
                                                 guard let businessName = business.name else { continue }
                                                 guard let businessMoneysigns = business.price else { continue }
                                                 guard let businessRating = business.rating else { continue }
-                                                guard var businessDistance = business.distance else { continue }
+                                                guard let businessDistance = business.distance else { continue }
                                                 guard let businessPic = business.imageUrl else { continue }
                                                 
                                                 if businessDistance < minDistance {
@@ -119,13 +138,8 @@ class ViewController: UIViewController {
                                             self.Distance.text = "\(String(format: "%.2f", minDistance * 0.0006)) miles away"
                                             
                                         }
-                                        
         }
-        
-        
     }
-    
-    
 }
 
 
