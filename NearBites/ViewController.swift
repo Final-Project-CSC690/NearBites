@@ -48,6 +48,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var StarRating: UILabel!
     @IBOutlet weak var Distance: UILabel!
     
+    @IBAction func RefreshCoordinate(_ sender: Any) {
+        viewDidLoad()
+    }
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
@@ -68,6 +71,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             guard let longitude = locations.first?.coordinate.longitude else { return }
             self.latitude = latitude
             self.longitude = longitude
+            print(self.longitude)
+            print(self.latitude)
         } else {
             print("No coordinates")
         }
