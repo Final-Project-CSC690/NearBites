@@ -9,5 +9,5 @@
 import Foundation
 
 class Constant {
-    let APIKey = "tJ_9SwEyWJExAyl3ZScEmv88RD-USWfV09ndeXdJG1WFe6qieXMN1mj5phOmFSEQ1BpozHNkQtaRmtyTB6-TdBW5aZFbttmC5Pkdn2EonyQphYUTzS3ixOyzZYbzW3Yx"
+    let APIKey = "BpIzYabZa87pOXHzSkGWb-Y4ETTshF_rX3PRaB52HGcX-b1fMFWF_XlRB0fIJeIBHHzWs6ZwrvXetglDrAKmKglOmhICUXH1qh920VR5SWkVq0OSQ5JZwPUH64nzW3Yx"
 }
