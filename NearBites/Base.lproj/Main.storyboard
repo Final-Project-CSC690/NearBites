@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="75i-uQ-GdI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="jy2-G5-kUV">
+            <objects>
+                <viewController id="75i-uQ-GdI" customClass="ViewController" customModule="Yelp_API" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r9R-Le-NBo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMy-95-AH9">
+                                <rect key="frame" x="0.0" y="168" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="me6-eP-P0r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsT-Ru-Hdj">
+                                <rect key="frame" x="0.0" y="102" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5Mn-Tv-MLi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCS-QH-1Uj">
+                                <rect key="frame" x="0.0" y="234" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="X6S-Vo-lVA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQI-iY-NCr">
+                                <rect key="frame" x="0.0" y="36" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lRb-g5-4Aw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4U-zo-lXh">
+                                <rect key="frame" x="16" y="303" width="343" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uMy-95-AH9" firstAttribute="top" secondItem="ZsT-Ru-Hdj" secondAttribute="bottom" constant="16" id="0Vm-Ar-tYL"/>
+                            <constraint firstItem="zmj-ib-f9q" firstAttribute="trailing" secondItem="gQI-iY-NCr" secondAttribute="trailing" id="1nI-DZ-RgP"/>
+                            <constraint firstItem="YCS-QH-1Uj" firstAttribute="top" secondItem="uMy-95-AH9" secondAttribute="bottom" constant="16" id="FOJ-iG-W2B"/>
+                            <constraint firstItem="zmj-ib-f9q" firstAttribute="trailing" secondItem="uMy-95-AH9" secondAttribute="trailing" id="P1Y-56-RAX"/>
+                            <constraint firstItem="zmj-ib-f9q" firstAttribute="trailing" secondItem="YCS-QH-1Uj" secondAttribute="trailing" id="Uz3-pq-PRD"/>
+                            <constraint firstItem="ZsT-Ru-Hdj" firstAttribute="leading" secondItem="zmj-ib-f9q" secondAttribute="leading" id="VMD-fu-8Mi"/>
+                            <constraint firstItem="ZsT-Ru-Hdj" firstAttribute="top" secondItem="gQI-iY-NCr" secondAttribute="bottom" constant="16" id="iyY-fh-zYP"/>
+                            <constraint firstItem="uMy-95-AH9" firstAttribute="leading" secondItem="zmj-ib-f9q" secondAttribute="leading" id="jD3-YL-8fs"/>
+                            <constraint firstItem="gQI-iY-NCr" firstAttribute="leading" secondItem="zmj-ib-f9q" secondAttribute="leading" id="jnx-YA-7yS"/>
+                            <constraint firstItem="gQI-iY-NCr" firstAttribute="top" secondItem="zmj-ib-f9q" secondAttribute="top" constant="16" id="pKK-fm-FH8"/>
+                            <constraint firstItem="zmj-ib-f9q" firstAttribute="trailing" secondItem="ZsT-Ru-Hdj" secondAttribute="trailing" id="r2G-SV-YRN"/>
+                            <constraint firstItem="YCS-QH-1Uj" firstAttribute="leading" secondItem="zmj-ib-f9q" secondAttribute="leading" id="zFe-Fb-mBR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zmj-ib-f9q"/>
+                    </view>
+                    <connections>
+                        <outlet property="Distance" destination="gQI-iY-NCr" id="UyX-kA-9MA"/>
+                        <outlet property="MoneySign" destination="ZsT-Ru-Hdj" id="whV-tm-Bxw"/>
+                        <outlet property="Name" destination="uMy-95-AH9" id="BT2-FW-8me"/>
+                        <outlet property="StarRating" destination="YCS-QH-1Uj" id="2QM-hb-uxj"/>
+                        <outlet property="picture" destination="L4U-zo-lXh" id="lim-0P-mZk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Tx-B5-rN7" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="255" y="116"/>
+        </scene>
+    </scenes>
+</document>
