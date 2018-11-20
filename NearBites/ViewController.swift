@@ -41,8 +41,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var StarRating: UILabel!
     @IBOutlet weak var Distance: UILabel!
     
-    let yelpAPIClient = CDYelpAPIClient(apiKey: "6t1yyDemETWProD7stUxMlhZJtApUA_yR-IH4N2FeVz61oHVRZ3tpQAPNXAWN2dDVA-O_9CflFFpgYiIrBD8Irgz1jyEbxvJzrG9YOTT8BT1VhFhcidn8Ka8ZEPJW3Yx")
     
+    let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
         super.viewDidLoad()
