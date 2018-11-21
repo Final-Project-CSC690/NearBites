@@ -35,6 +35,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     //Location manager
     let locationManager = CLLocationManager()
+    
+    let queue = DispatchQueue(label: "Business queue")
+    
     //coordinates to hold
     var longitude = 0.0
     var latitude = 0.0
@@ -64,6 +67,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
+        //Must wait a second before returning object
+        run(after: 1){
+            for business in self.businessesReturned.businesses {
+                print(business.name!)
+            }
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -76,6 +86,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print(self.latitude)
         } else {
             print("No coordinates")
+        }
+    }
+    
+    //Dispatch and wait for Data
+    func run(after seconds: Int, completion: @escaping() -> Void) {
+        let deadline = DispatchTime.now() + .seconds(seconds)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            completion()
         }
     }
     
@@ -108,7 +126,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                             var moneySigns = ""
                                             var rating = 0.0
                                             
+                                            
                                             self.businessesReturned.businesses = businesses
+                                            
                                             for business in self.businessesReturned.businesses {
                                                 guard let businessName = business.name else { continue }
                                                 guard let businessMoneysigns = business.price else { continue }
