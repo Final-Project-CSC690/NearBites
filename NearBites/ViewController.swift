@@ -67,13 +67,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
-        //Must wait a second before returning object
-        run(after: 1){
+        //Must wait a second before print object because data has not yet finished downloading 
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)){
             for business in self.businessesReturned.businesses {
                 print(business.name!)
             }
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -86,14 +85,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print(self.latitude)
         } else {
             print("No coordinates")
-        }
-    }
-    
-    //Dispatch and wait for Data
-    func run(after seconds: Int, completion: @escaping() -> Void) {
-        let deadline = DispatchTime.now() + .seconds(seconds)
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
-            completion()
         }
     }
     
