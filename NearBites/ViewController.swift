@@ -53,6 +53,8 @@ class ViewController: UIViewController {
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
+    
+        super.viewDidLoad()
         
         //function that gets all nearby businesses
         getBusinesses(yelpAPIClient: yelpAPIClient)
@@ -62,8 +64,6 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 300
-        
-        super.viewDidLoad()
         
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
@@ -78,8 +78,9 @@ class ViewController: UIViewController {
         // Cancel any API requests previously made
         yelpAPIClient.cancelAllPendingAPIRequests()
         // Query Yelp Fusion API for business results
+        print("\(self.latitude) \(self.longitude)")
         yelpAPIClient.searchBusinesses(byTerm: "Mexican",
-                                       location: "San Francisco",
+                                       location: nil,
                                        latitude: self.latitude,
                                        longitude: self.longitude,
                                        radius: 10000,
@@ -106,6 +107,8 @@ class ViewController: UIViewController {
                                                 }
                                                 self.group.leave()
                                             }
+                                            
+                                            //following lines of code is meant for debugging
                                             
 //                                            self.businessesReturned.businesses = businesses
 //                                            var minDistance = 99999.99
@@ -141,15 +144,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count > 0 {
-            guard let latitude = locations.first?.coordinate.latitude else { return }
-            guard let longitude = locations.first?.coordinate.longitude else { return }
+            guard let latitude = locations.last?.coordinate.latitude else { return }
+            guard let longitude = locations.last?.coordinate.longitude else { return }
             self.latitude = latitude
             self.longitude = longitude
-            print(self.longitude)
             print(self.latitude)
+            print(self.longitude)
         } else {
             print("No coordinates")
         }
@@ -158,7 +160,6 @@ extension ViewController: CLLocationManagerDelegate {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
         return self.businessesReturned.businesses.count
     }
     

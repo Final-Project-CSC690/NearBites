@@ -22,8 +22,8 @@ class BusinessCell: UITableViewCell {
         guard let rating = business.rating else { return }
         guard let distance = business.distance else { return }
         
-        let url = URL(string: image.absoluteString)
-        let data = try? Data(contentsOf: url!)
+        var url = URL(string: image.absoluteString)
+        var data = try? Data(contentsOf: url!)
         businessImage.image = UIImage(data: data!)
         businessName.text = business.name
         businessRating.text = String(rating)
