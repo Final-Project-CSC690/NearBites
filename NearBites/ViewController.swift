@@ -20,19 +20,22 @@ import Alamofire
 import CDYelpFusionKit
 import CoreLocation
 
-
-//Ulysses method
-struct Business {
-    let name: String
-    let address: String
-}
-
 struct Businesses {
     var businesses = [CDYelpBusiness]()
 }
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     
+    @IBOutlet weak var businessTableView: UITableView!
+    @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var MoneySign: UILabel!
+    @IBOutlet weak var StarRating: UILabel!
+    @IBOutlet weak var Distance: UILabel!
+    @IBAction func RefreshCoordinate(_ sender: Any) {
+        viewDidLoad()
+    }
+
     //Location manager
     let locationManager = CLLocationManager()
     
@@ -46,16 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     //holds all returned business from search
     var businessesReturned = Businesses()
     
-    @IBOutlet weak var picture: UIImageView!
-    @IBOutlet weak var Name: UILabel!
-    @IBOutlet weak var MoneySign: UILabel!
-    @IBOutlet weak var StarRating: UILabel!
-    @IBOutlet weak var Distance: UILabel!
-    
-    @IBAction func RefreshCoordinate(_ sender: Any) {
-        viewDidLoad()
-    }
-    
+    //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
@@ -71,28 +65,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
         
-        //notification when task is completed
+        //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
-            print("Finally completed and able to use elements in array to do stuff such as reload data if there was a tableview" )
-            print(self.businessesReturned.businesses.count)
-            for b in self.businessesReturned.businesses {
-                print(b.distance)
-            }
+//            print("Business array is now filled")
+            self.businessTableView.reloadData()
         }
        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.count > 0 {
-            guard let latitude = locations.first?.coordinate.latitude else { return }
-            guard let longitude = locations.first?.coordinate.longitude else { return }
-            self.latitude = latitude
-            self.longitude = longitude
-            print(self.longitude)
-            print(self.latitude)
-        } else {
-            print("No coordinates")
-        }
     }
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
@@ -119,12 +97,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
-                                            var minDistance = 99999.99
-                                            var closesBusiness = ""
-                                            var moneySigns = ""
-                                            var rating = 0.0
-                                            
-                                            
                                             DispatchQueue.main.async {
                                                 //sort businesses by distance because returned businesses may not be sorted
                                                 if businesses.count > 1 {
@@ -134,48 +106,72 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                                 }
                                                 self.group.leave()
                                             }
-                                           
-                                            self.businessesReturned.businesses = businesses
                                             
-                                            for business in self.businessesReturned.businesses {
-                                                guard let businessName = business.name else { continue }
-                                                guard let businessMoneysigns = business.price else { continue }
-                                                guard let businessRating = business.rating else { continue }
-                                                guard let businessDistance = business.distance else { continue }
-                                                guard let businessPic = business.imageUrl else { continue }
-                                                
-                                                if businessDistance < minDistance {
-                                                    minDistance = businessDistance
-                                                    closesBusiness = businessName
-                                                    moneySigns = businessMoneysigns
-                                                    rating = businessRating
-                                                }
-                                                
-                                                print(businessName)
-                                                print(businessMoneysigns)
-                                                print(businessRating)
-                                                print(String(format: "%.2f", businessDistance * 0.0006))
-                                                print()
-                                                
-                                                let url = URL(string: businessPic.absoluteString)
-                                                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                                                self.picture.image = UIImage(data: data!)
-                                                
-                                            }
-                                            
-                                            print("The closes restaurant \(closesBusiness) is about \(String(format: "%.2f", minDistance * 0.0006)) miles away")
-                                            
-                                            self.Name.text = closesBusiness
-                                            self.MoneySign.text = moneySigns
-                                            self.StarRating.text = String(rating)
-                                            self.Distance.text = "\(String(format: "%.2f", minDistance * 0.0006)) miles away"
+//                                            self.businessesReturned.businesses = businesses
+//                                            var minDistance = 99999.99
+//                                            var closesBusiness = ""
+//                                            var moneySigns = ""
+//                                            var rating = 0.0
+//                                            for business in self.businessesReturned.businesses {
+//                                                guard let businessName = business.name else { continue }
+//                                                guard let businessMoneysigns = business.price else { continue }
+//                                                guard let businessRating = business.rating else { continue }
+//                                                guard let businessDistance = business.distance else { continue }
+//                                                guard let businessPic = business.imageUrl else { continue }
+//                                                if businessDistance < minDistance {
+//                                                    minDistance = businessDistance
+//                                                    closesBusiness = businessName
+//                                                    moneySigns = businessMoneysigns
+//                                                    rating = businessRating
+//                                                }
+//                                                print(businessName)
+//                                                print(businessMoneysigns)
+//                                                print(businessRating)
+//                                                print(String(format: "%.2f", businessDistance * 0.0006))
+//                                                print()
+//                                                let url = URL(string: businessPic.absoluteString)
+//                                                let data = try? Data(contentsOf: url!)
+//                                                self.picture.image = UIImage(data: data!)
+//                                                print("The closes restaurant \(closesBusiness) is about \(String(format: "%.2f", minDistance * 0.0006)) miles away")
+//                                            }
                                         }
-                                        
         }
     }
     
-    
 }
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 {
+            guard let latitude = locations.first?.coordinate.latitude else { return }
+            guard let longitude = locations.first?.coordinate.longitude else { return }
+            self.latitude = latitude
+            self.longitude = longitude
+            print(self.longitude)
+            print(self.latitude)
+        } else {
+            print("No coordinates")
+        }
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        return self.businessesReturned.businesses.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let business = self.businessesReturned.businesses[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
+        cell.setBusinessDescription(business: business)
+        return cell 
+    }
+}
+
+
 
 
 
