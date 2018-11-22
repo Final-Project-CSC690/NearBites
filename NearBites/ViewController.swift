@@ -36,7 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     //Location manager
     let locationManager = CLLocationManager()
     
-    let queue = DispatchQueue(label: "Business queue")
+    //group is similar to a semaphore, Enter, Leave, Wait, Notify (for when completed)
+    let group = DispatchGroup()
     
     //coordinates to hold
     var longitude = 0.0
@@ -54,10 +55,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func RefreshCoordinate(_ sender: Any) {
         viewDidLoad()
     }
+    
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        //function that gets all nearby businesses
+        getBusinesses(yelpAPIClient: yelpAPIClient)
         
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
@@ -65,14 +69,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 300
         
-        getBusinesses(yelpAPIClient: yelpAPIClient)
+        super.viewDidLoad()
         
-        //Must wait a second before print object because data has not yet finished downloading 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)){
-            for business in self.businessesReturned.businesses {
-                print(business.name!)
+        //notification when task is completed
+        self.group.notify(queue: .main) {
+            print("Finally completed and able to use elements in array to do stuff such as reload data if there was a tableview" )
+            print(self.businessesReturned.businesses.count)
+            for b in self.businessesReturned.businesses {
+                print(b.distance)
             }
         }
+       
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -89,7 +96,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
-        
+        self.group.enter()
         // Cancel any API requests previously made
         yelpAPIClient.cancelAllPendingAPIRequests()
         // Query Yelp Fusion API for business results
@@ -118,6 +125,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                             var rating = 0.0
                                             
                                             
+                                            DispatchQueue.main.async {
+                                                //sort businesses by distance because returned businesses may not be sorted
+                                                if businesses.count > 1 {
+                                                    self.businessesReturned.businesses = businesses.sorted(by: { ($0.distance!.isLess(than: $1.distance!))})
+                                                } else {
+                                                    self.businessesReturned.businesses = businesses
+                                                }
+                                                self.group.leave()
+                                            }
+                                           
                                             self.businessesReturned.businesses = businesses
                                             
                                             for business in self.businessesReturned.businesses {
@@ -137,8 +154,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                                 print(businessName)
                                                 print(businessMoneysigns)
                                                 print(businessRating)
-                                                print(businessPic)
-                                                print(String(format: "%.2f", businessDistance))
+                                                print(String(format: "%.2f", businessDistance * 0.0006))
                                                 print()
                                                 
                                                 let url = URL(string: businessPic.absoluteString)
@@ -153,10 +169,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                             self.MoneySign.text = moneySigns
                                             self.StarRating.text = String(rating)
                                             self.Distance.text = "\(String(format: "%.2f", minDistance * 0.0006)) miles away"
-                                            
                                         }
+                                        
         }
     }
+    
+    
 }
 
 
