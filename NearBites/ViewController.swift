@@ -165,7 +165,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = self.businessesReturned.businesses[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
         cell.setBusinessDescription(business: business)
         return cell 
