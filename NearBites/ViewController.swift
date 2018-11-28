@@ -5,7 +5,7 @@
 //  Created by Paul Ancajima on 11/19/18.
 //  Copyright © 2018 Paul Ancajima. All rights reserved.
 //
-//12345
+
 //
 //  ViewController.swift
 //  Yelp API
@@ -26,7 +26,15 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
+    let people = ["1","2","3","4","5","6"]
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    /*
+    @IBOutlet weak var cellText: UICollectionView!
+    
     @IBOutlet weak var businessTableView: UITableView!
+     
+     
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var MoneySign: UILabel!
@@ -34,8 +42,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var Distance: UILabel!
     @IBAction func RefreshCoordinate(_ sender: Any) {
         viewDidLoad()
+    }*/
+    @IBAction func RefreshCoordinate(_ sender: Any) {
+        viewDidLoad()
     }
-
+    
+    
     //Location manager
     let locationManager = CLLocationManager()
     
@@ -56,6 +68,8 @@ class ViewController: UIViewController {
     
         super.viewDidLoad()
         
+        collectionView.dataSource = self
+        
         //function that gets all nearby businesses
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
@@ -68,8 +82,12 @@ class ViewController: UIViewController {
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
 //            print("Business array is now filled")
-            self.businessTableView.reloadData()
+            //self.businessTableView.reloadData()
+            
+            self.collectionView.reloadData()
         }
+        
+        
        
     }
     
@@ -157,7 +175,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
     }
 }
-
+/*
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.businessesReturned.businesses.count
@@ -165,13 +183,42 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let business = self.businessesReturned.businesses[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
         cell.setBusinessDescription(business: business)
         return cell 
     }
+}*/
+
+
+
+extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //return people.count
+        print("first inside")
+        print(self.businessesReturned.businesses.count)
+        return self.businessesReturned.businesses.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        print("inside collection view")
+        let business = self.businessesReturned.businesses[indexPath.row]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
+        
+        //cell.setBusinessDescription(business: business)
+        //cell.businessName.text = people[indexPath.row]
+        cell.setBusinessDescription(business: business)
+        return cell
+        
+    }
+    
+
+    
 }
-
-
 
 
 
