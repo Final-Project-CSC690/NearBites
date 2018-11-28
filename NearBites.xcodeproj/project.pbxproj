@@ -17,6 +17,7 @@
 		78A6C47221A3BA320090A2D8 /* NearBitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C47121A3BA320090A2D8 /* NearBitesTests.swift */; };
 		78A6C47D21A3BA330090A2D8 /* NearBitesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C47C21A3BA330090A2D8 /* NearBitesUITests.swift */; };
 		78B03D7021A3C08700088A4E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B03D6F21A3C08700088A4E /* Constant.swift */; };
+		9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429EEE21AF3D8100F248D8 /* MainViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		78A6C47C21A3BA330090A2D8 /* NearBitesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBitesUITests.swift; sourceTree = "<group>"; };
 		78A6C47E21A3BA330090A2D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78B03D6F21A3C08700088A4E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		9C429EEE21AF3D8100F248D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
+				9C429EEE21AF3D8100F248D8 /* MainViewController.swift */,
 				9CEFEED921AD173500B5B54D /* Constant.swift */,
 				78A6C45D21A3BA310090A2D8 /* Main.storyboard */,
 				78A6C46321A3BA320090A2D8 /* Assets.xcassets */,
@@ -341,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */,
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
 				78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */,
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,

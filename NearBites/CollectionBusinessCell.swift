@@ -22,7 +22,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         print("business button")
     }
     func setBusinessDescription(business: CDYelpBusiness){
-        print("hi")
+        //print("hi")
         let name = business.name!
         let image = business.imageUrl!
         let rating = String(business.rating!)

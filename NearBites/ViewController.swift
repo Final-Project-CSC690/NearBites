@@ -43,9 +43,19 @@ class ViewController: UIViewController {
     @IBAction func RefreshCoordinate(_ sender: Any) {
         viewDidLoad()
     }*/
-    @IBAction func RefreshCoordinate(_ sender: Any) {
+    
+
+    @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
         viewDidLoad()
     }
+    
+    @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
+        print("simon view will load with segue")
+    }
+    /*
+    @IBAction func RefreshCoordinate(_ sender: Any) {
+        viewDidLoad()
+    }*/
     
     
     //Location manager
