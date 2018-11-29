@@ -108,12 +108,8 @@ class ViewController: UIViewController {
         self.group.notify(queue: .main) {
 //            print("Business array is now filled")
             //self.businessTableView.reloadData()
-            
             self.collectionView.reloadData()
         }
-        
-        
-       
     }
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
@@ -143,6 +139,7 @@ class ViewController: UIViewController {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
+                                            print(businesses)
                                             DispatchQueue.main.async {
                                                 //sort businesses by distance because returned businesses may not be sorted
                                                 if businesses.count > 1 {
