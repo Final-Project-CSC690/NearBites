@@ -26,7 +26,14 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
-    let people = ["1","2","3","4","5","6"]
+    //let people = ["1","2","3","4","5","6"]
+    
+    var term: String?
+    
+    // Filter Search Category to Restaurants!
+    var categories = [CDYelpBusinessCategoryFilter.restaurants]
+    
+    //let SearchTerm = self.term!
     
     @IBOutlet weak var collectionView: UICollectionView!
     /*
@@ -52,6 +59,9 @@ class ViewController: UIViewController {
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
         print("simon view will load with segue")
     }
+    
+    
+    
     /*
     @IBAction func RefreshCoordinate(_ sender: Any) {
         viewDidLoad()
@@ -78,6 +88,11 @@ class ViewController: UIViewController {
     
         super.viewDidLoad()
         
+        //print(term!)
+        
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
         collectionView.dataSource = self
         
         //function that gets all nearby businesses
@@ -103,16 +118,18 @@ class ViewController: UIViewController {
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
         self.group.enter()
+        
         // Cancel any API requests previously made
         yelpAPIClient.cancelAllPendingAPIRequests()
+        
         // Query Yelp Fusion API for business results
         print("\(self.latitude) \(self.longitude)")
-        yelpAPIClient.searchBusinesses(byTerm: "Mexican",
+        yelpAPIClient.searchBusinesses(byTerm: term,
                                        location: nil,
                                        latitude: self.latitude,
                                        longitude: self.longitude,
                                        radius: 10000,
-                                       categories: nil,
+                                       categories: categories,
                                        locale: .english_unitedStates,
                                        limit: 5,
                                        offset: 0,

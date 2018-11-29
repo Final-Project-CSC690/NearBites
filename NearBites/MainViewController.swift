@@ -12,14 +12,42 @@ class MainViewController: UIViewController {
 
     @IBAction func SearchButton(_ sender: UIButton) {
         performSegue(withIdentifier: "SearchTransition", sender: self)
+        
+        
+        //guard let term = searchTerm.text else { return}
+        //print(term)
     }
+    
+    @IBOutlet weak var searchTerm: UISearchBar!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // Hide the navigation bar on the this view controller
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        
     }
     
-
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let recieverVc = segue.destination as! ViewController
+        //recieverVc.term = searchTerm.text!
+        
+        
+        
+        if let text = searchTerm.text {
+            recieverVc.term = text
+        }
+        
+        
+    }
     /*
     // MARK: - Navigation
 

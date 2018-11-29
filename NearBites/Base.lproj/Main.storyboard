@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j7N-Mx-DBP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rI1-U4-PB9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -97,16 +97,18 @@
                         <viewLayoutGuide key="safeArea" id="3xL-ka-b2R"/>
                     </view>
                     <navigationItem key="navigationItem" id="twQ-PF-OR9">
-                        <barButtonItem key="leftBarButtonItem" title="Reload" id="Nqv-E5-qtz">
-                            <connections>
-                                <action selector="reloadbusinessButton:" destination="OWb-mP-ka1" id="E9p-1z-0pt"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="ViewMap" id="JDU-D9-MjZ">
-                            <connections>
-                                <action selector="viewMapButton:" destination="OWb-mP-ka1" id="alr-XF-ckk"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="ViewMap" id="JDU-D9-MjZ">
+                                <connections>
+                                    <action selector="viewMapButton:" destination="OWb-mP-ka1" id="alr-XF-ckk"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Reload" id="Nqv-E5-qtz">
+                                <connections>
+                                    <action selector="reloadbusinessButton:" destination="OWb-mP-ka1" id="E9p-1z-0pt"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="1Ts-F1-BfL" id="Ek8-74-IzE"/>
@@ -114,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uI-XA-fNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1175.2" y="113.79310344827587"/>
+            <point key="canvasLocation" x="1169" y="114"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="EOC-P2-Q4K">
@@ -124,18 +126,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NearBites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-ii-OBl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NearBites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-ii-OBl">
                                 <rect key="frame" x="16" y="123" width="343" height="70.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="59"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" text="Search restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="1Xw-pu-xL8">
-                                <rect key="frame" x="0.0" y="278" width="375" height="56"/>
+                            <searchBar contentMode="redraw" ambiguous="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="1Xw-pu-xL8">
+                                <rect key="frame" x="0.0" y="277.5" width="375" height="56"/>
                                 <color key="barTintColor" red="0.21727702021598816" green="0.28921183943748474" blue="0.36452168226242065" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEQ-NN-u3T">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEQ-NN-u3T">
                                 <rect key="frame" x="127" y="450" width="121" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.11558261860000001" blue="0.060167100690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button">
@@ -164,32 +166,34 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xSr-2y-npa"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lEb-qp-1GM"/>
                     <connections>
-                        <segue destination="TZg-wX-hgs" kind="presentation" identifier="SearchTransition" id="IKq-Aj-UL4"/>
+                        <outlet property="searchTerm" destination="1Xw-pu-xL8" id="tBZ-r9-XCu"/>
+                        <segue destination="OWb-mP-ka1" kind="show" identifier="SearchTransition" id="y7s-rP-ubj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B7s-rX-GcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QJO-o6-ck2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-674.39999999999998" y="113.79310344827587"/>
+            <point key="canvasLocation" x="264.80000000000001" y="113.79310344827587"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="oKL-lY-OUh">
+        <scene sceneID="8bJ-FP-EBK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TZg-wX-hgs" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rI1-U4-PB9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mcO-ej-Cd0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a5r-r2-d0J">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="OWb-mP-ka1" kind="relationship" relationship="rootViewController" id="tz9-ZC-crN"/>
+                        <segue destination="j7N-Mx-DBP" kind="relationship" relationship="rootViewController" id="MhE-QW-j1l"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fb0-Z4-I7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6j6-re-Mag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="113.79310344827587"/>
+            <point key="canvasLocation" x="-674.39999999999998" y="113.79310344827587"/>
         </scene>
     </scenes>
 </document>
