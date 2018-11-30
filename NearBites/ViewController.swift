@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     //let people = ["1","2","3","4","5","6"]
     
     var term: String?
+    var currentRestaurant = 1
     
     // Filter Search Category to Restaurants!
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
     //let SearchTerm = self.term!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     /*
     @IBOutlet weak var cellText: UICollectionView!
     
@@ -59,7 +61,6 @@ class ViewController: UIViewController {
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
         print("simon view will load with segue")
     }
-    
     
     
     /*
@@ -88,7 +89,28 @@ class ViewController: UIViewController {
     
         super.viewDidLoad()
         
+        
+        //collectionView?.backgroundColor = UIColor.white
+        //collectionView?.collectionViewLayout.targetContentOffset(forProposedContentOffset: <#T##CGPoint#>, withScrollingVelocity: <#T##CGPoint#>)
+        //collectionView?.collectionViewLayout = UIScrollView
         //print(term!)
+        
+        /*
+        
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            setQuestionNumber()
+        }
+        
+        
+        // Cycle through restaurants
+        func setQuestionNumber() {
+            let x = collectionView.contentOffset.x
+            let w = collectionView.bounds.size.width
+            let currentPage = Int(ceil(x/w))
+            if currentPage < self.businessesReturned.businesses.count {
+                currentRestaurant = currentPage + 1
+            }
+        }*/
         
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -112,14 +134,17 @@ class ViewController: UIViewController {
         }
     }
     
+    
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
         self.group.enter()
         
         // Cancel any API requests previously made
         yelpAPIClient.cancelAllPendingAPIRequests()
         
+        // Coordinates before search!
+        print("lat : \(self.latitude) long: \(self.longitude)")
+        
         // Query Yelp Fusion API for business results
-        print("\(self.latitude) \(self.longitude)")
         yelpAPIClient.searchBusinesses(byTerm: term,
                                        location: nil,
                                        latitude: self.latitude,
@@ -127,7 +152,7 @@ class ViewController: UIViewController {
                                        radius: 10000,
                                        categories: categories,
                                        locale: .english_unitedStates,
-                                       limit: 5,
+                                       limit: 10,
                                        offset: 0,
                                        sortBy: .distance,
                                        priceTiers: nil,
@@ -139,7 +164,8 @@ class ViewController: UIViewController {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
-                                            print(businesses)
+                                            //print(businesses.)
+                                            
                                             DispatchQueue.main.async {
                                                 //sort businesses by distance because returned businesses may not be sorted
                                                 if businesses.count > 1 {
@@ -218,6 +244,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return people.count
         print("first inside")
@@ -240,7 +268,9 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         
     }
     
-
+    
+    
+    
     
 }
 

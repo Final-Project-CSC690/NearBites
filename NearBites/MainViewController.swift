@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CDYelpFusionKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var yelpLogo: UIImageView!
     @IBAction func SearchButton(_ sender: UIButton) {
         performSegue(withIdentifier: "SearchTransition", sender: self)
         
@@ -24,6 +26,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //cell.imageView?.image = UIImage.yelpStars(numberOfStars: .twoHalf, forSize: .large)
+        //cell.imageView?.image = UIImage.yelpBurstLogoRed(
+        yelpLogo.image = UIImage(named: "logo")
+        
         // Do any additional setup after loading the view.
         // Hide the navigation bar on the this view controller
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
