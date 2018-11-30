@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     
     var term: String?
     var currentRestaurant = 1
+    var myindex = 0
     
     // Filter Search Category to Restaurants!
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
@@ -59,9 +60,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
-        print("simon view will load with segue")
+        //print("simon view will load with segue")
+        
+        //BusinessesMapSegue
+        performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
     }
     
+    @IBAction func businessDescription(_ sender: UIButton) {
+        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
+        
+        // You Will have to pass business information or use another segue identifier!
+        
+    }
     
     /*
     @IBAction func RefreshCoordinate(_ sender: Any) {
@@ -267,6 +277,23 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         return cell
         
     }
+    
+    /*
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        let businex = self.businessesReturned.businesses[indexPath.row]
+        
+        guard let name = businex.name else { return}
+        
+        print(name)
+        /*
+        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
+        
+        self.navigationController?.pushViewController(viewController!, animated: true)
+        */
+        
+    }*/
     
     
     

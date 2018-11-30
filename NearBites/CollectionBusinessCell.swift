@@ -19,6 +19,7 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessDistance: UILabel!
     @IBOutlet weak var businessAddress: UILabel!
     
+    @IBOutlet weak var locationIcon: UIImageView!
     
     /*
     @IBAction func reloadbusinessButton(_ sender: Any) {
@@ -31,6 +32,8 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     func setBusinessDescription(business: CDYelpBusiness){
         //print("hi")
+        
+        locationIcon.image = UIImage(named: "location")
         
         guard let name = business.name else { return }
         guard let image = business.imageUrl else { return }

@@ -26,9 +26,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //searchTerm.searchBarStyle = .minimal
         //cell.imageView?.image = UIImage.yelpStars(numberOfStars: .twoHalf, forSize: .large)
         //cell.imageView?.image = UIImage.yelpBurstLogoRed(
-        yelpLogo.image = UIImage(named: "logo")
+        //yelpLogo.image = UIImage(named: "logo")
+        yelpLogo.image = UIImage.yelpLogo()
         
         // Do any additional setup after loading the view.
         // Hide the navigation bar on the this view controller
