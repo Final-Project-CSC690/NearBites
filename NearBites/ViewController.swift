@@ -30,7 +30,6 @@ class ViewController: UIViewController {
     
     var term: String?
     var currentRestaurant = 1
-    var myindex = 0
     
     // Filter Search Category to Restaurants!
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
@@ -66,12 +65,23 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
     }
     
+    
+    
     @IBAction func businessDescription(_ sender: UIButton) {
         performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
         
         // You Will have to pass business information or use another segue identifier!
         
     }
+    
+    /*
+    @IBAction func BuisnessDescription(_ sender: Any) {
+        
+        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
+    }*/
+    
+    
+    
     
     /*
     @IBAction func RefreshCoordinate(_ sender: Any) {
@@ -101,6 +111,7 @@ class ViewController: UIViewController {
         
         
         //collectionView?.backgroundColor = UIColor.white
+        
         //collectionView?.collectionViewLayout.targetContentOffset(forProposedContentOffset: <#T##CGPoint#>, withScrollingVelocity: <#T##CGPoint#>)
         //collectionView?.collectionViewLayout = UIScrollView
         //print(term!)
@@ -162,7 +173,7 @@ class ViewController: UIViewController {
                                        radius: 10000,
                                        categories: categories,
                                        locale: .english_unitedStates,
-                                       limit: 10,
+                                       limit: 5,
                                        offset: 0,
                                        sortBy: .distance,
                                        priceTiers: nil,
@@ -258,44 +269,32 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return people.count
-        print("first inside")
-        print(self.businessesReturned.businesses.count)
+        //print("first inside")
+        //print(self.businessesReturned.businesses.count)
         return self.businessesReturned.businesses.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        print("inside collection view")
+        //print("inside collection view")
         let business = self.businessesReturned.businesses[indexPath.row]
+        
+        
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
         
         //cell.setBusinessDescription(business: business)
         //cell.businessName.text = people[indexPath.row]
         cell.setBusinessDescription(business: business)
+        
+        
+        //cell.backgroundColor = UIColor.red
+        
+        
         return cell
         
     }
-    
-    /*
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        let businex = self.businessesReturned.businesses[indexPath.row]
-        
-        guard let name = businex.name else { return}
-        
-        print(name)
-        /*
-        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-        
-        self.navigationController?.pushViewController(viewController!, animated: true)
-        */
-        
-    }*/
-    
-    
     
     
     
