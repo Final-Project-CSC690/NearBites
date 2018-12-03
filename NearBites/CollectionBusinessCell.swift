@@ -18,7 +18,13 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessRating: UILabel!
     @IBOutlet weak var businessDistance: UILabel!
     @IBOutlet weak var businessAddress: UILabel!
+    
+    @IBOutlet weak var reviewsLabel: UILabel!
+    
+    
     @IBOutlet weak var locationIcon: UIImageView!
+    
+    @IBOutlet weak var startIcon: UIImageView!
     
     //Glitch inputting businesPhone!
     //@IBOutlet weak var businessPhone: UILabel!
@@ -27,14 +33,18 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         
         locationIcon.image = UIImage(named: "location")
+        startIcon.image = UIImage(named: "star")
         
         guard let name = business.name else { return }
         guard let image = business.imageUrl else { return }
         guard let rating = business.rating else { return }
         guard let distance = business.distance else { return }
         guard let address = business.location else { return }
+        guard let reviews = business.reviewCount else { return }
+        
         //guard let phone = business.price else { return }
         
+        print(reviews)
         print(rating)
         print(image)
         print(name)
@@ -75,6 +85,8 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessDistance.font = UIFont.systemFont(ofSize: 20)
         
         
+        reviewsLabel.textColor = UIColor.gray
+        reviewsLabel.text = "(\(reviews)+)"
         //businessPhone.text = phone
         
     }
@@ -84,6 +96,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         super.layoutSubviews()
         
         self.layer.cornerRadius = 20
+        
     }
 }
 

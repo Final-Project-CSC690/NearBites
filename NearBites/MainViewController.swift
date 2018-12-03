@@ -12,12 +12,9 @@ import CDYelpFusionKit
 class MainViewController: UIViewController {
 
     @IBOutlet weak var yelpLogo: UIImageView!
+    
     @IBAction func SearchButton(_ sender: UIButton) {
         performSegue(withIdentifier: "SearchTransition", sender: self)
-        
-        
-        //guard let term = searchTerm.text else { return}
-        //print(term)
     }
     
     @IBOutlet weak var searchTerm: UISearchBar!
@@ -39,7 +36,7 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        
+        //self.view.backgroundColor = UIColor.red
     }
     
     
