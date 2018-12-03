@@ -19,48 +19,23 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var searchTerm: UISearchBar!
     
-    
+    // View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //searchTerm.searchBarStyle = .minimal
-        //cell.imageView?.image = UIImage.yelpStars(numberOfStars: .twoHalf, forSize: .large)
-        //cell.imageView?.image = UIImage.yelpBurstLogoRed(
-        //yelpLogo.image = UIImage(named: "logo")
-        yelpLogo.image = UIImage.yelpLogo()
-        
-        // Do any additional setup after loading the view.
-        // Hide the navigation bar on the this view controller
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        yelpLogo.image = UIImage(named: "logo")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        //self.view.backgroundColor = UIColor.red
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let recieverVc = segue.destination as! ViewController
         //recieverVc.term = searchTerm.text!
         
-        
-        
         if let text = searchTerm.text {
             recieverVc.term = text
         }
-        
-        
+    
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

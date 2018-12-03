@@ -26,38 +26,14 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
-    //let people = ["1","2","3","4","5","6"]
-    
-    var term: String?
-    var currentRestaurant = 1
-    
-    // Filter Search Category to Restaurants!
-    var categories = [CDYelpBusinessCategoryFilter.restaurants]
-    
-    //let SearchTerm = self.term!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    /*
-    @IBOutlet weak var cellText: UICollectionView!
-    
-    @IBOutlet weak var businessTableView: UITableView!
-     
-     
-    @IBOutlet weak var picture: UIImageView!
-    @IBOutlet weak var Name: UILabel!
-    @IBOutlet weak var MoneySign: UILabel!
-    @IBOutlet weak var StarRating: UILabel!
-    @IBOutlet weak var Distance: UILabel!
-    @IBAction func RefreshCoordinate(_ sender: Any) {
-        viewDidLoad()
-    }*/
-    
-
+    // Reload Button
     @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
         viewDidLoad()
     }
     
+    // View Map Button (To display all restaurants at once
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
         //print("simon view will load with segue")
         
@@ -65,8 +41,7 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
     }
     
-    
-    
+    // THIS MIGHT BE IMPLEMENTED!
     @IBAction func businessDescription(_ sender: UIButton) {
         performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
         
@@ -74,20 +49,11 @@ class ViewController: UIViewController {
         
     }
     
-    /*
-    @IBAction func BuisnessDescription(_ sender: Any) {
-        
-        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
-    }*/
+    // Search term been passed from Main View
+    var term: String?
     
-    
-    
-    
-    /*
-    @IBAction func RefreshCoordinate(_ sender: Any) {
-        viewDidLoad()
-    }*/
-    
+    // Filter Search Category to Restaurants!
+    var categories = [CDYelpBusinessCategoryFilter.restaurants]
     
     //Location manager
     let locationManager = CLLocationManager()
@@ -109,33 +75,10 @@ class ViewController: UIViewController {
     
         super.viewDidLoad()
         
-        
-        //collectionView?.backgroundColor = UIColor.white
-        
-        //collectionView?.collectionViewLayout.targetContentOffset(forProposedContentOffset: <#T##CGPoint#>, withScrollingVelocity: <#T##CGPoint#>)
-        //collectionView?.collectionViewLayout = UIScrollView
-        //print(term!)
-        
-        /*
-        
-        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            setQuestionNumber()
-        }
-        
-        
-        // Cycle through restaurants
-        func setQuestionNumber() {
-            let x = collectionView.contentOffset.x
-            let w = collectionView.bounds.size.width
-            let currentPage = Int(ceil(x/w))
-            if currentPage < self.businessesReturned.businesses.count {
-                currentRestaurant = currentPage + 1
-            }
-        }*/
-        
-        
+        // Eliminating Visible bar!
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
+        // Collection view dataSource
         collectionView.dataSource = self
         
         //function that gets all nearby businesses
@@ -265,12 +208,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return people.count
-        //print("first inside")
-        //print(self.businessesReturned.businesses.count)
         return self.businessesReturned.businesses.count
         
     }
@@ -279,25 +217,13 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         
         //print("inside collection view")
         let business = self.businessesReturned.businesses[indexPath.row]
-        
-        
-        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
-        
-        //cell.setBusinessDescription(business: business)
-        //cell.businessName.text = people[indexPath.row]
+
         cell.setBusinessDescription(business: business)
-        
-        
-        //cell.backgroundColor = UIColor.red
-        
-        
+
         return cell
-        
     }
-    
-    
-    
 }
 
 
