@@ -222,6 +222,62 @@
             </objects>
             <point key="canvasLocation" x="1945" y="114"/>
         </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="FFq-U7-RnT">
+            <objects>
+                <tableViewController id="3Oc-qu-RzF" customClass="SettingViewController" customModule="NearBites" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B6i-z3-3kn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection headerTitle="How many Restaurants" id="AvL-Z1-4w3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="L4s-JC-b1Z">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L4s-JC-b1Z" id="jRs-Wz-T4W">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Radius" id="a4H-rd-pag">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mzv-fw-mXW">
+                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mzv-fw-mXW" id="Ihh-yr-2Xu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Price range" id="oOd-iW-6Xo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bPR-tM-PNc">
+                                        <rect key="frame" x="0.0" y="172" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPR-tM-PNc" id="CHT-sk-mqP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="3Oc-qu-RzF" id="eDU-Jn-Y7v"/>
+                            <outlet property="delegate" destination="3Oc-qu-RzF" id="t4E-DM-g3S"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxm-kh-V50" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1169" y="-686"/>
+        </scene>
         <!--Business Description-->
         <scene sceneID="6vW-iZ-Mjv">
             <objects>
@@ -307,7 +363,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xSr-2y-npa"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lEb-qp-1GM"/>
+                    <navigationItem key="navigationItem" id="lEb-qp-1GM">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="dRe-kW-JIF"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTerm" destination="1Xw-pu-xL8" id="tBZ-r9-XCu"/>
                         <outlet property="yelpLogo" destination="njF-jN-szn" id="lv1-Nj-jEI"/>

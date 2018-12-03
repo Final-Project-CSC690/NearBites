@@ -17,6 +17,14 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "SearchTransition", sender: self)
     }
     
+    /*
+    @IBAction func SettingsButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "settingSegue", sender: self)
+        
+        // You Will have to pass business settings to base your search on!
+    }*/
+    
+    
     @IBOutlet weak var searchTerm: UISearchBar!
     
     // View Did Load
@@ -28,7 +36,10 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        
         let recieverVc = segue.destination as! ViewController
         //recieverVc.term = searchTerm.text!
         
