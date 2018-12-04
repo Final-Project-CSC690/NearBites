@@ -19,6 +19,7 @@ import YelpAPI
 import Alamofire
 import CDYelpFusionKit
 import CoreLocation
+import MapKit
 
 struct Businesses {
     var businesses = [CDYelpBusiness]()
@@ -43,10 +44,23 @@ class ViewController: UIViewController {
     
     // THIS MIGHT BE IMPLEMENTED!
     @IBAction func businessDescription(_ sender: UIButton) {
-        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
         
+        
+        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
         // You Will have to pass business information or use another segue identifier!
         
+        /* ADDING COORDINAtes
+        let latitude:CLLocationDegrees = 37.761979999999994
+        let longitude: CLLocationDegrees = -122.42730427759548
+        
+        //START 15204453750
+
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapitem = MKMapItem(placemark: placemark)
+        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapitem.openInMaps(launchOptions: options)
+        */
     }
     
     // Search term been passed from Main View
