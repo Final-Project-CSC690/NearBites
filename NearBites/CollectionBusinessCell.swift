@@ -27,6 +27,11 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var BusinessOpen: UILabel!
     
     
+    
+    
+    
+    
+    
     @IBAction func DirectionsButton(_ sender: UIButton) {
         
         //print("heyyyyyy")
@@ -48,12 +53,13 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     var lat = 0.0
     var long = 0.0
+    var direction = " "
     
     
     func setBusinessDescription(business: CDYelpBusiness){
         
         // Loading Images
-        locationIcon.image = UIImage(named: "location")
+        //locationIcon.image = UIImage(named: "location")
         startIcon.image = UIImage(named: "star")
         
         // Loading data to be displayed on cells!
@@ -125,6 +131,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         // Name Style
         businessName.textColor = UIColor.white
         businessName.font = UIFont.systemFont(ofSize: 20)
+        businessName.font = UIFont.boldSystemFont(ofSize: 20)
         
         
         // Address label Style

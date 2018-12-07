@@ -11,8 +11,6 @@ import UIKit
 
 class SettingViewController:  UITableViewController {
     
-    
-    
     override func viewDidLoad() {
         tableView.tableFooterView = UIView()
     }

@@ -27,10 +27,13 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
+    //var xdictionaryLat = [String]()
+    //var xdictionaryLong = [String]()
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Reload Button
     @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
+        
         viewDidLoad()
     }
     
@@ -39,7 +42,8 @@ class ViewController: UIViewController {
         //print("simon view will load with segue")
         
         //BusinessesMapSegue
-        performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
+        //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
+        
     }
     
     // THIS MIGHT BE IMPLEMENTED!
@@ -122,6 +126,19 @@ class ViewController: UIViewController {
         // Coordinates before search!
         print("lat : \(self.latitude) long: \(self.longitude)")
         
+        
+        /*
+         // Fetch Data from defaults!
+         let defaults = UserDefaults.standard
+         let myarrayLatitude = defaults.stringArray(forKey: "SavedLatidude") ?? [String]()
+         let myarrayLongitude = defaults.stringArray(forKey: "SavedLatidude") ?? [String]()
+        
+        
+        print("user defaults")
+        print(myarrayLatitude)
+        print(myarrayLongitude)
+        */
+        
         // Query Yelp Fusion API for business results
         yelpAPIClient.searchBusinesses(byTerm: term,
                                        location: nil,
@@ -198,6 +215,21 @@ extension ViewController: CLLocationManagerDelegate {
             self.longitude = longitude
             print(self.latitude)
             print(self.longitude)
+            
+            /*
+            self.xdictionaryLat.append(String(self.latitude))
+            self.xdictionaryLong.append(String(self.longitude))
+            
+            print("yo")
+            print(xdictionaryLat)
+            print(xdictionaryLong)
+            
+            // Store Arrays in defaults!
+            let defaults = UserDefaults.standard
+            defaults.set(self.xdictionaryLat, forKey: "SavedLatitude")
+            defaults.set(self.xdictionaryLong, forKey: "SavedLongitude")
+            */
+  
         } else {
             print("No coordinates")
         }

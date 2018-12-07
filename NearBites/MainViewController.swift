@@ -11,6 +11,11 @@ import CDYelpFusionKit
 
 class MainViewController: UIViewController {
 
+    
+    @IBOutlet weak var Tittle: UILabel!
+    
+    
+    
     @IBOutlet weak var yelpLogo: UIImageView!
     
     @IBAction func SearchButton(_ sender: UIButton) {
@@ -39,7 +44,6 @@ class MainViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        
         let recieverVc = segue.destination as! ViewController
         //recieverVc.term = searchTerm.text!
         
