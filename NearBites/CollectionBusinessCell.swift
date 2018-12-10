@@ -19,34 +19,26 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var startIcon: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var businessRating: UILabel!
+    
+    @IBOutlet weak var starRating: UIImageView!
+    
     @IBOutlet weak var businessDistance: UILabel!
     @IBOutlet weak var businessAddress: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var businessPrice: UILabel!
     
-    @IBOutlet weak var BusinessOpen: UILabel!
-    
-    
-    
-    
-    
-    
     
     @IBAction func DirectionsButton(_ sender: UIButton) {
         
-        //print("heyyyyyy")
-        //print(lat)
-        //print(long)
         
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
-        
-        //START 15204453750
-        
+
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapitem = MKMapItem(placemark: placemark)
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapitem.name = businessName.text
         mapitem.openInMaps(launchOptions: options)
         
     }
@@ -54,7 +46,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     var lat = 0.0
     var long = 0.0
     var direction = " "
-    
     
     func setBusinessDescription(business: CDYelpBusiness){
         
@@ -70,16 +61,13 @@ class CollectionBusinessCell: UICollectionViewCell {
         guard let address = business.location else { return }
         guard let reviews = business.reviewCount else { return }
         guard let price = business.price else { return }
-        guard let status = business.phone else { return }
+        
         guard let coordinatesLongitude = business.coordinates?.longitude else { return }
         guard let coordinatesLatitude = business.coordinates?.latitude else { return }
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
-
-        // Business Status
-        BusinessOpen.text = status
-        
+        print("from collection business cell lat: \(lat) , long: \(long)")
         
         // image String preparation!
         let url = URL(string: image.absoluteString)
@@ -112,7 +100,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // Phone
-        BusinessOpen.textColor = UIColor.white
+        
         
         // Price Style
         businessPrice.textColor = UIColor.white

@@ -113,12 +113,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BusinessStatus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t5-Ns-teF">
-                                                    <rect key="frame" x="20" y="356" width="118" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1U-EI-T8j">
                                                     <rect key="frame" x="251" y="397" width="23" height="22"/>
                                                     <color key="backgroundColor" red="1" green="0.59215686270000001" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -127,12 +121,20 @@
                                                         <action selector="DirectionsButton:" destination="TE2-yY-GaT" eventType="touchUpInside" id="xoT-8N-Xyl"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haJ-ls-6NI">
+                                                    <rect key="frame" x="20" y="351" width="79" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="79" id="03m-b8-7Am"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.4278413955479452" green="0.92628959760273977" blue="0.93875749143835618" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="haJ-ls-6NI" firstAttribute="leading" secondItem="MkX-NV-hD0" secondAttribute="leading" id="0U2-kG-9kh"/>
                                             <constraint firstItem="KLv-T5-fJe" firstAttribute="trailing" secondItem="26w-Ft-muF" secondAttribute="trailing" id="3Nk-Vu-R53"/>
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="trailing" secondItem="E06-17-CZO" secondAttribute="trailing" id="4uy-n8-ynQ"/>
+                                            <constraint firstItem="eku-T4-IEu" firstAttribute="top" secondItem="haJ-ls-6NI" secondAttribute="bottom" constant="13" id="7TY-OP-ha1"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="t1U-EI-T8j" secondAttribute="bottom" constant="10" id="AX5-Aj-iJm"/>
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="leading" secondItem="E06-17-CZO" secondAttribute="leading" id="FsZ-WR-bNH"/>
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="top" secondItem="TE2-yY-GaT" secondAttribute="top" constant="85" id="IU4-IQ-RYe"/>
@@ -145,12 +147,11 @@
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="centerX" secondItem="TE2-yY-GaT" secondAttribute="centerX" id="RJE-1V-iRK"/>
                                             <constraint firstItem="t1U-EI-T8j" firstAttribute="top" secondItem="KLv-T5-fJe" secondAttribute="bottom" constant="89" id="SeC-Qh-nqg"/>
                                             <constraint firstItem="MkX-NV-hD0" firstAttribute="centerY" secondItem="QBy-sV-XOq" secondAttribute="centerY" id="Syz-F7-sIE"/>
-                                            <constraint firstItem="3t5-Ns-teF" firstAttribute="leading" secondItem="MkX-NV-hD0" secondAttribute="leading" id="TvK-Jq-gXi"/>
                                             <constraint firstItem="MkX-NV-hD0" firstAttribute="top" secondItem="XX3-OY-QOg" secondAttribute="bottom" constant="13" id="VPD-NC-0Lp"/>
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="top" secondItem="E06-17-CZO" secondAttribute="bottom" constant="15" id="Yy5-hN-Wi4"/>
                                             <constraint firstItem="MkX-NV-hD0" firstAttribute="leading" secondItem="XX3-OY-QOg" secondAttribute="leading" id="ahA-hd-m5u"/>
-                                            <constraint firstItem="3t5-Ns-teF" firstAttribute="top" secondItem="QBy-sV-XOq" secondAttribute="bottom" constant="11" id="bRz-3l-dtH"/>
                                             <constraint firstItem="QBy-sV-XOq" firstAttribute="top" secondItem="XX3-OY-QOg" secondAttribute="bottom" constant="9" id="erH-on-Tnn"/>
+                                            <constraint firstItem="haJ-ls-6NI" firstAttribute="top" secondItem="QBy-sV-XOq" secondAttribute="bottom" constant="6" id="h08-PW-gkS"/>
                                             <constraint firstItem="l1g-Id-kb8" firstAttribute="leading" secondItem="XX3-OY-QOg" secondAttribute="leading" id="hWh-n5-teh"/>
                                             <constraint firstItem="p1L-Fw-u2l" firstAttribute="leading" secondItem="MkX-NV-hD0" secondAttribute="trailing" constant="32" id="lq3-kL-sWi"/>
                                             <constraint firstItem="XX3-OY-QOg" firstAttribute="top" secondItem="l1g-Id-kb8" secondAttribute="bottom" constant="13" id="mUH-W8-Gag"/>
@@ -164,7 +165,6 @@
                                         </constraints>
                                         <size key="customSize" width="349" height="437"/>
                                         <connections>
-                                            <outlet property="BusinessOpen" destination="3t5-Ns-teF" id="osk-pK-zmL"/>
                                             <outlet property="businessAddress" destination="XX3-OY-QOg" id="YxM-Yp-yUM"/>
                                             <outlet property="businessDistance" destination="26w-Ft-muF" id="Mgt-su-bDm"/>
                                             <outlet property="businessImage" destination="l1g-Id-kb8" id="uNa-8q-VpV"/>
@@ -172,6 +172,7 @@
                                             <outlet property="businessPrice" destination="KLv-T5-fJe" id="XQQ-K8-xgt"/>
                                             <outlet property="businessRating" destination="QBy-sV-XOq" id="gGo-47-GX2"/>
                                             <outlet property="reviewsLabel" destination="p1L-Fw-u2l" id="7S7-nD-V8Q"/>
+                                            <outlet property="starRating" destination="haJ-ls-6NI" id="oDm-8a-yKu"/>
                                             <outlet property="startIcon" destination="MkX-NV-hD0" id="DPL-yG-Hyw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -403,7 +404,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="location" width="40" height="40"/>
+        <image name="location" width="20" height="20"/>
         <image name="yelp_burst_logo_red" width="120" height="120"/>
     </resources>
 </document>

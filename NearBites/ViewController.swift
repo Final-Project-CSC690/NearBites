@@ -27,13 +27,10 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
-    //var xdictionaryLat = [String]()
-    //var xdictionaryLong = [String]()
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Reload Button
     @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
-        
         viewDidLoad()
     }
     
@@ -110,8 +107,6 @@ class ViewController: UIViewController {
         
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
-//            print("Business array is now filled")
-            //self.businessTableView.reloadData()
             self.collectionView.reloadData()
         }
     }
@@ -125,19 +120,7 @@ class ViewController: UIViewController {
         
         // Coordinates before search!
         print("lat : \(self.latitude) long: \(self.longitude)")
-        
-        
-        /*
-         // Fetch Data from defaults!
-         let defaults = UserDefaults.standard
-         let myarrayLatitude = defaults.stringArray(forKey: "SavedLatidude") ?? [String]()
-         let myarrayLongitude = defaults.stringArray(forKey: "SavedLatidude") ?? [String]()
-        
-        
-        print("user defaults")
-        print(myarrayLatitude)
-        print(myarrayLongitude)
-        */
+
         
         // Query Yelp Fusion API for business results
         yelpAPIClient.searchBusinesses(byTerm: term,
@@ -215,42 +198,12 @@ extension ViewController: CLLocationManagerDelegate {
             self.longitude = longitude
             print(self.latitude)
             print(self.longitude)
-            
-            /*
-            self.xdictionaryLat.append(String(self.latitude))
-            self.xdictionaryLong.append(String(self.longitude))
-            
-            print("yo")
-            print(xdictionaryLat)
-            print(xdictionaryLong)
-            
-            // Store Arrays in defaults!
-            let defaults = UserDefaults.standard
-            defaults.set(self.xdictionaryLat, forKey: "SavedLatitude")
-            defaults.set(self.xdictionaryLong, forKey: "SavedLongitude")
-            */
-  
+
         } else {
             print("No coordinates")
         }
     }
 }
-/*
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.businessesReturned.businesses.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let business = self.businessesReturned.businesses[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
-        cell.setBusinessDescription(business: business)
-        return cell 
-    }
-}*/
-
-
 
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -265,7 +218,8 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         let business = self.businessesReturned.businesses[indexPath.row]
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
-
+        
+        cell.starRating.image = UIImage.yelpStars(numberOfStars: CDYelpStars.four, forSize: .large)
         cell.setBusinessDescription(business: business)
 
         return cell
