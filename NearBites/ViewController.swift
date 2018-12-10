@@ -25,6 +25,32 @@ struct Businesses {
     var businesses = [CDYelpBusiness]()
 }
 
+func starRating (rating: Double) -> CDYelpStars {
+    if rating == 0.0 {
+        return CDYelpStars.zero
+    }else if rating == 1.0 {
+        return CDYelpStars.one
+    }else if rating == 1.5 {
+        return CDYelpStars.oneHalf
+    }else if rating == 2.0 {
+        return CDYelpStars.two
+    }else if rating == 2.5 {
+        return CDYelpStars.twoHalf
+    }else if rating == 3.0 {
+        return CDYelpStars.three
+    }else if rating == 3.5 {
+        return CDYelpStars.threeHalf
+    }else if rating == 4.0 {
+        return CDYelpStars.four
+    }else if rating == 4.5 {
+        return CDYelpStars.fourHalf
+    }else if rating == 5.0 {
+        return CDYelpStars.five
+    } else {
+        return CDYelpStars.zero
+    }
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -209,7 +235,6 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.businessesReturned.businesses.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -219,7 +244,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
         
-        cell.starRating.image = UIImage.yelpStars(numberOfStars: CDYelpStars.four, forSize: .large)
+        cell.starRating.image = UIImage.yelpStars(numberOfStars: starRating(rating: business.rating!), forSize: .large)
         cell.setBusinessDescription(business: business)
 
         return cell
