@@ -148,6 +148,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Y-hC-zgZ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="1Jf-No-CUZ" id="JbI-Gk-BKe"/>
                                 </connections>

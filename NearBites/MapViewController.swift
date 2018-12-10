@@ -36,6 +36,7 @@ class MapViewController: UIViewController
 //            center: CLLocationCoordinate2DMake((location.coordinate.latitude, location.coordinate.longitude), span: span)
 //        map.setRegion(region, animated: true)
         addBusniessLocations()
+        self.map.showAnnotations(self.map.annotations, animated: true)
     }
     
 
@@ -55,7 +56,6 @@ class MapViewController: UIViewController
                 annotation.append(tempAnnotation)
             }
             map.addAnnotations(annotation)
-            self.map.showAnnotations(self.map.annotations, animated: true)
         }
     }
     
@@ -65,6 +65,7 @@ extension MapViewController : MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
-      //  print(MKAnnotationView.title)
+        print((view.annotation?.title)!!)
+        AnnotationInfo(mapView: map, bussiness: businessesReturned, annotationView: view)
     }
 }
