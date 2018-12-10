@@ -21,7 +21,7 @@
 		9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
-		9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionView.swift */; };
+		9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */; };
 		9CF08E6E21B1E7A300D0CC71 /* BusinessMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
-		9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDescriptionView.swift; sourceTree = "<group>"; };
+		9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDescriptionViewController.swift; sourceTree = "<group>"; };
 		9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +133,7 @@
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
 				9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */,
-				9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionView.swift */,
+				9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */,
 				9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */,
 				9C429EEE21AF3D8100F248D8 /* MainViewController.swift */,
 				9CEFEED921AD173500B5B54D /* Constant.swift */,
@@ -359,7 +359,7 @@
 			files = (
 				9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */,
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
-				9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionView.swift in Sources */,
+				9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionViewController.swift in Sources */,
 				78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */,
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,
 				9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */,

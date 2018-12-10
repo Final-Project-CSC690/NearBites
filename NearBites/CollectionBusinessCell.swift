@@ -13,12 +13,13 @@ import MapKit
 
 class CollectionBusinessCell: UICollectionViewCell {
     
+    
+    
     // Outlets!
     @IBOutlet weak var businessImage: UIImageView!
     @IBOutlet weak var locationIcon: UIImageView!
     @IBOutlet weak var startIcon: UIImageView!
     @IBOutlet weak var businessName: UILabel!
-    @IBOutlet weak var businessRating: UILabel!
     
     @IBOutlet weak var starRating: UIImageView!
     
@@ -29,7 +30,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        
         
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
@@ -49,14 +49,9 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     func setBusinessDescription(business: CDYelpBusiness){
         
-        // Loading Images
-        //locationIcon.image = UIImage(named: "location")
-        startIcon.image = UIImage(named: "star")
-        
         // Loading data to be displayed on cells!
         guard let name = business.name else { return }
         guard let image = business.imageUrl else { return }
-        guard let rating = business.rating else { return }
         guard let distance = business.distance else { return }
         guard let address = business.location else { return }
         guard let reviews = business.reviewCount else { return }
@@ -85,10 +80,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         // Name
         businessName.text = name
         
-        // Rating
-        businessRating.text = String(rating)
-        
-        
         // Distance
         businessDistance.text = "\(String(round(distance*0.0006))) mi"
         
@@ -113,9 +104,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessDistance.textColor = UIColor.white
         businessDistance.font = UIFont.systemFont(ofSize: 20)
         
-        // Rating Style
-        businessRating.textColor = UIColor.white
-        
+      
         // Name Style
         businessName.textColor = UIColor.white
         businessName.font = UIFont.systemFont(ofSize: 20)
