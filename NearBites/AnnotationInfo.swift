@@ -24,10 +24,8 @@ class AnnotationInfo : NSObject
         self.businessesReturned = businessesReturned
         self.annotationView = annotationView
         self.map = map
-        setCurrBusiness()
-        showInfo()
     }
-    
+
     func setCurrBusiness()
     {
         for businesses in self.businessesReturned!.businesses
@@ -39,29 +37,27 @@ class AnnotationInfo : NSObject
             }
         }
     }
-    
-    let blackView = UIView()
+    var blackView = UIView()
     func showInfo()
     {
         if let window = UIApplication.shared.keyWindow {
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-            
-            blackView.addGestureRecognizer(UITapGestureRecognizer())
-            
+            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
             map.addSubview(blackView)
-
             blackView.frame = window.frame
             blackView.alpha = 0
-
+            blackView.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.5, animations: {
                 self.blackView.alpha = 1
             })
         }
     }
-    func handleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            print("Hello")
-        }
+    
+    @objc func handleDismiss(_ recognizer: UITapGestureRecognizer)
+    {
+        print("Hello")
+        //        map.willRemoveSubview(blackView)
     }
-
 }
+
+

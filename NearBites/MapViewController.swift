@@ -25,6 +25,7 @@ class MapViewController: UIViewController
 //    var region : MKCoordinateRegion!
     var annotation: [MKPointAnnotation] = []
     var tempAnnotation : MKPointAnnotation!
+    var blackView = UIView()
     
     override func viewDidLoad()
     {
@@ -65,7 +66,29 @@ extension MapViewController : MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
-        print((view.annotation?.title)!!)
-        AnnotationInfo(mapView: map, bussiness: businessesReturned, annotationView: view)
+//        print((view.annotation?.title)!!)
+//        AnnotationInfo(mapView: map, bussiness: businessesReturned, annotationView: view)
+        showInfo()
+        
+    }
+    func showInfo()
+    {
+        if let window = UIApplication.shared.keyWindow {
+            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
+            map.addSubview(blackView)
+            blackView.frame = window.frame
+            blackView.alpha = 0
+            blackView.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.5, animations: {
+                self.blackView.alpha = 1
+            })
+        }
+    }
+    @objc func handleDismiss(_ recognizer: UITapGestureRecognizer)
+    {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blackView.alpha = 0
+        })
     }
 }
