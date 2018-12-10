@@ -19,6 +19,7 @@
 		9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429EEE21AF3D8100F248D8 /* MainViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
+		F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B033521BCF40F00701BDF /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		9C429EEE21AF3D8100F248D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
+		F41B033521BCF40F00701BDF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +123,9 @@
 		78A6C45821A3BA310090A2D8 /* NearBites */ = {
 			isa = PBXGroup;
 			children = (
-				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
+				F41B033521BCF40F00701BDF /* MapViewController.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
+				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
 				9C429EEE21AF3D8100F248D8 /* MainViewController.swift */,
 				9CEFEED921AD173500B5B54D /* Constant.swift */,
@@ -350,6 +353,7 @@
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,
 				9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */,
 				9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */,
+				F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

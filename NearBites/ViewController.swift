@@ -22,6 +22,7 @@ import CoreLocation
 
 struct Businesses {
     var businesses = [CDYelpBusiness]()
+    
 }
 
 class ViewController: UIViewController {
@@ -59,9 +60,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
-        print("simon view will load with segue")
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is MapViewController
+        {
+            let MapVC = segue.destination as? MapViewController
+            MapVC?.businessesReturned = businessesReturned
+         //   MapVC?.locationManager = self.locationManager
+        }
+    }
     
     /*
     @IBAction func RefreshCoordinate(_ sender: Any) {
@@ -84,6 +93,9 @@ class ViewController: UIViewController {
     
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
+    
+    
+    
     
     override func viewDidLoad() {
     
@@ -265,7 +277,6 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         //cell.businessName.text = people[indexPath.row]
         cell.setBusinessDescription(business: business)
         return cell
-        
     }
     
     
