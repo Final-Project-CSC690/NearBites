@@ -19,8 +19,9 @@
 		9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429EEE21AF3D8100F248D8 /* MainViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
-		F406A5F921BE10AF0080E8B0 /* AnnotationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406A5F821BE10AF0080E8B0 /* AnnotationInfo.swift */; };
 		F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B033521BCF40F00701BDF /* MapViewController.swift */; };
+		F4AD11A221BEA168008D5DC8 /* AnnotationsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */; };
+		F4B8836021BEF53A003FB31B /* AnnotationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +62,9 @@
 		9C429EEE21AF3D8100F248D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
-		F406A5F821BE10AF0080E8B0 /* AnnotationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationInfo.swift; sourceTree = "<group>"; };
 		F41B033521BCF40F00701BDF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsLauncher.swift; sourceTree = "<group>"; };
+		F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationInfoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				F41B033521BCF40F00701BDF /* MapViewController.swift */,
-				F406A5F821BE10AF0080E8B0 /* AnnotationInfo.swift */,
+				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
+				F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
@@ -354,9 +357,10 @@
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
 				78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */,
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,
+				F4B8836021BEF53A003FB31B /* AnnotationInfoCell.swift in Sources */,
+				F4AD11A221BEA168008D5DC8 /* AnnotationsLauncher.swift in Sources */,
 				9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */,
 				9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */,
-				F406A5F921BE10AF0080E8B0 /* AnnotationInfo.swift in Sources */,
 				F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

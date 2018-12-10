@@ -68,7 +68,6 @@ class ViewController: UIViewController {
         {
             let MapVC = segue.destination as? MapViewController
             MapVC?.businessesReturned = businessesReturned
-         //   MapVC?.locationManager = self.locationManager
         }
     }
     

@@ -17,30 +17,21 @@ import MapKit
 class MapViewController: UIViewController
 {
     @IBOutlet weak var map: MKMapView!
-//    var locationManager: CLLocationManager!
-    
     var businessesReturned: Businesses!
-    //How much the map should be zoomed when the location is loaded.
-//    var span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-//    var region : MKCoordinateRegion!
     var annotation: [MKPointAnnotation] = []
     var tempAnnotation : MKPointAnnotation!
-    var blackView = UIView()
+    let annotationLauncher : AnnotationLauncher = {
+        let launcher = AnnotationLauncher()
+        return launcher
+    }()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-//        map.userTrackingMode = .follow
-//
-//        let location = locations.last as! CLLocation
-//        region = MKCoordinateRegion(
-//            center: CLLocationCoordinate2DMake((location.coordinate.latitude, location.coordinate.longitude), span: span)
-//        map.setRegion(region, animated: true)
         addBusniessLocations()
         self.map.showAnnotations(self.map.annotations, animated: true)
     }
     
-
     func addBusniessLocations()
     {
         if(businessesReturned.businesses.count == 0)
@@ -59,36 +50,15 @@ class MapViewController: UIViewController
             map.addAnnotations(annotation)
         }
     }
-    
 }
 
 extension MapViewController : MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
-//        print((view.annotation?.title)!!)
-//        AnnotationInfo(mapView: map, bussiness: businessesReturned, annotationView: view)
-        showInfo()
-        
-    }
-    func showInfo()
-    {
-        if let window = UIApplication.shared.keyWindow {
-            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
-            map.addSubview(blackView)
-            blackView.frame = window.frame
-            blackView.alpha = 0
-            blackView.isUserInteractionEnabled = true
-            UIView.animate(withDuration: 0.5, animations: {
-                self.blackView.alpha = 1
-            })
-        }
-    }
-    @objc func handleDismiss(_ recognizer: UITapGestureRecognizer)
-    {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blackView.alpha = 0
-        })
+        annotationLauncher.businessesReturned = self.businessesReturned
+        annotationLauncher.annotationView = view
+        annotationLauncher.showInfo()
     }
 }
+
