@@ -16,10 +16,12 @@ class BusinessDescriptionViewController: UIViewController {
     @IBOutlet weak var review: UILabel!
     
     var reviewFromViewController: String!
+    var address: String!
    
     override func viewDidLoad() {
         review.sizeToFit()
         review.text = reviewFromViewController
+        print(address)
     }
     
 }

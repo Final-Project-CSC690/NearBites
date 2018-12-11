@@ -46,8 +46,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
         businessDesriptionVC.reviewFromViewController = review
-        
-        
+        businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
     }
     // THIS MIGHT BE IMPLEMENTED!
     @IBAction func businessDescription(_ sender: UIButton) {
