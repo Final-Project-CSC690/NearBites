@@ -181,7 +181,7 @@
                             <barButtonItem title="ViewMap" id="JDU-D9-MjZ">
                                 <connections>
                                     <action selector="viewMapButton:" destination="OWb-mP-ka1" id="alr-XF-ckk"/>
-                                    <segue destination="1Jf-No-CUZ" kind="show" id="uHm-gc-co5"/>
+                                    <segue destination="1Jf-No-CUZ" kind="show" identifier="BusinessesMapSegue" id="dcc-pE-RsT"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Reload" id="Nqv-E5-qtz">
@@ -194,14 +194,12 @@
                     <connections>
                         <outlet property="collectionView" destination="1Ts-F1-BfL" id="Ek8-74-IzE"/>
                         <segue destination="ABL-nl-vZW" kind="show" identifier="businessDescriptionSegue" id="VmQ-k8-9GH"/>
-                        <segue destination="ldL-Fo-rCl" kind="show" identifier="BusinessesMapSegue" id="2Sc-98-Avx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uI-XA-fNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1168.8" y="113.79310344827587"/>
         </scene>
-
         <!--Businesses Location-->
         <scene sceneID="SSD-Oh-fP2">
             <objects>
@@ -215,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuw-nl-v5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1945" y="114"/>
+            <point key="canvasLocation" x="1913" y="518"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="FFq-U7-RnT">
@@ -313,7 +311,6 @@
             </objects>
             <point key="canvasLocation" x="1168.8" y="893.70314842578716"/>
         </scene>
-
         <!--Map-->
         <scene sceneID="NuM-HW-HOd">
             <objects>
@@ -346,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRg-eI-125" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981.5999999999999" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2639" y="114"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="EOC-P2-Q4K">
@@ -501,7 +498,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="location" width="40" height="40"/>
+        <image name="location" width="20" height="20"/>
         <image name="yelp_burst_logo_red" width="120" height="120"/>
     </resources>
 </document>

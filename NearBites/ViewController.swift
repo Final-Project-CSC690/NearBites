@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
-    
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -49,22 +48,16 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
-        businessDesriptionVC.reviewFromViewController = review
-        
-        businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
-        //businessDesriptionVC.busineesex = Businesses
-        //businessDesriptionVC.busineesex = businessesReturned
-        
-        if segue.destination is MapViewController
-        {
-            let MapVC = segue.destination as? MapViewController
-            MapVC?.businessesReturned = businessesReturned
+            if segue.identifier == "BusinessesMapSegue" {
+                guard let MapVC = segue.destination as? MapViewController else { return }
+                MapVC.businessesReturned = businessesReturned
+            } else if segue.identifier == "businessDescriptionSegue" {
+                guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
+                businessDesriptionVC.reviewFromViewController = review
+                businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
         }
-        
     }
     
-   
     
     // THIS MIGHT BE IMPLEMENTED!
     @IBAction func businessDescription(_ sender: UIButton) {
@@ -101,9 +94,7 @@ class ViewController: UIViewController {
     var currentItem = 0
     
     
-    
-    
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
