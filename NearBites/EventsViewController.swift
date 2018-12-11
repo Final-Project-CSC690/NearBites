@@ -18,6 +18,7 @@ struct Event {
 
 class EventsViewController: UIViewController {
     
+    
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
     
     //Location manager
@@ -47,6 +48,15 @@ class EventsViewController: UIViewController {
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
         
+        
+        
+        //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 300
+        
+    
     }
     
     
@@ -79,18 +89,36 @@ class EventsViewController: UIViewController {
                 events.count > 0 {
                 //print(events.toJSON())
                 
-                //print()
                 
+                for event in events{
+                    print(event.name!)
+                    print(event.attendingCount!)
+                    print(event.category!)
+                    print(event.description!)
+                    print(event.interestedCount!)
                 
-                
+                }
                 
             }
         }
     }
-    
 }
 
-
+extension EventsViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count > 0 {
+            guard let latitude = locations.last?.coordinate.latitude else { return }
+            guard let longitude = locations.last?.coordinate.longitude else { return }
+            self.latitude = latitude
+            self.longitude = longitude
+            print(self.latitude)
+            print(self.longitude)
+            
+        } else {
+            print("No coordinates")
+        }
+    }
+}
 
 
 

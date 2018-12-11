@@ -5,7 +5,6 @@
 //  Created by Ulises Martinez on 11/26/18.
 //  Copyright © 2018 Paul Ancajima. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import CDYelpFusionKit
@@ -25,7 +24,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessPrice: UILabel!
     
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
 
