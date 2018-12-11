@@ -5,7 +5,6 @@
 //  Created by Ulises Martinez on 11/26/18.
 //  Copyright © 2018 Paul Ancajima. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import CDYelpFusionKit
@@ -13,24 +12,18 @@ import MapKit
 
 class CollectionBusinessCell: UICollectionViewCell {
     
-    
-    
     // Outlets!
     @IBOutlet weak var businessImage: UIImageView!
     @IBOutlet weak var locationIcon: UIImageView!
     @IBOutlet weak var startIcon: UIImageView!
     @IBOutlet weak var businessName: UILabel!
-    
     @IBOutlet weak var starRating: UIImageView!
-    
     @IBOutlet weak var businessDistance: UILabel!
     @IBOutlet weak var businessAddress: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var businessPrice: UILabel!
     
-    
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
 
@@ -90,8 +83,8 @@ class CollectionBusinessCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // Phone
-        
+        // Address Style
+        businessAddress.textColor = UIColor.white
         
         // Price Style
         businessPrice.textColor = UIColor.white
@@ -104,15 +97,10 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessDistance.textColor = UIColor.white
         businessDistance.font = UIFont.systemFont(ofSize: 20)
         
-      
         // Name Style
         businessName.textColor = UIColor.white
         businessName.font = UIFont.systemFont(ofSize: 20)
         businessName.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        
-        // Address label Style
-        businessAddress.textColor = UIColor.white
         
         // Image style!
         businessImage.layer.cornerRadius = 20
