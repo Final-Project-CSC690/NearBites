@@ -71,7 +71,7 @@ class EventsViewController: UIViewController {
         
         yelpAPIClient.searchEvents(byLocale: nil,
                                    offset: nil,
-                                   limit: 1,
+                                   limit: 5,
                                    sortBy: .descending,
                                    sortOn: .popularity,
                                    categories: [.foodAndDrink],
