@@ -13,7 +13,6 @@
 //  Created by Paul Ancajima on 11/11/18.
 //  Copyright © 2018 Paul Ancajima. All rights reserved.
 //
-
 import UIKit
 import YelpAPI
 import Alamofire
@@ -78,10 +77,10 @@ class ViewController: UIViewController {
     //holds all returned business from search
     var businessesReturned = Businesses()
     
+    // Cell size and position!
     let collectionMargin = CGFloat(16)
     let itemSpacing = CGFloat(15)
     let itemHeight = CGFloat(500)
-    
     var itemWidth = CGFloat(0)
     var currentItem = 0
  
@@ -90,18 +89,15 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        
+        // Paging effect!
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
         itemWidth =  UIScreen.main.bounds.width - collectionMargin * 2.0
-        
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.headerReferenceSize = CGSize(width: collectionMargin, height: 0)
         layout.footerReferenceSize = CGSize(width: collectionMargin, height: 0)
         layout.minimumLineSpacing = itemSpacing
         layout.scrollDirection = .horizontal
-        
         collectionView!.collectionViewLayout = layout
         collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
  
@@ -169,7 +165,7 @@ class ViewController: UIViewController {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
-                                            //print(businesses.)
+                                            //print(businesses.description)
                                             
                                             DispatchQueue.main.async {
                                                 //sort businesses by distance because returned businesses may not be sorted

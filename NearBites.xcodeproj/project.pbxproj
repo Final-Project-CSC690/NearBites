@@ -19,6 +19,7 @@
 		78A6C47D21A3BA330090A2D8 /* NearBitesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C47C21A3BA330090A2D8 /* NearBitesUITests.swift */; };
 		9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429EEE21AF3D8100F248D8 /* MainViewController.swift */; };
 		9CB8D79F21BF24C500873142 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8D79E21BF24C500873142 /* Constant.swift */; };
+		9CED666221BF84FC0007D6B9 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CED666121BF84FC0007D6B9 /* EventsViewController.swift */; };
 		9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
@@ -64,6 +65,7 @@
 		78A6C47E21A3BA330090A2D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C429EEE21AF3D8100F248D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9CB8D79E21BF24C500873142 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		9CED666121BF84FC0007D6B9 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
 				9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */,
+				9CED666121BF84FC0007D6B9 /* EventsViewController.swift */,
 				9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */,
 				9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */,
 				9C429EEE21AF3D8100F248D8 /* MainViewController.swift */,
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CED666221BF84FC0007D6B9 /* EventsViewController.swift in Sources */,
 				9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */,
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
 				9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionViewController.swift in Sources */,
