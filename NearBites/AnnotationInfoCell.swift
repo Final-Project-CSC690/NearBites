@@ -8,40 +8,65 @@
 
 import UIKit
 
-class InfoCell : BaseCell
+class ImageCell : BaseCell
 {
-    var info: String? {
+    var info: Info? {
         didSet {
-                nameLabel.text = info
+            nameLabel.text = info?.name
+            if let imageName = info?.imageName {
+                iconImageView.image = UIImage(named: imageName)
+            }
+        }
+    }
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        return label
+    }()
+    
+    let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    override func setupViews() {
+        addSubview(nameLabel)
+        addSubview(iconImageView)
+        
+        addConstraintsWithFormat(format: "H:|-8-[v0(20)]-8-[v1]|", views: iconImageView, nameLabel)
+        
+        addConstraintsWithFormat(format: "V:|[v0]|", views: nameLabel)
+        
+        addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
+
+        addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+    }
+}
+
+
+class TextCell : BaseCell
+{
+    var info: Info? {
+        didSet {
+                nameLabel.text = info?.name
             }
         }
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Setting"
+        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
-//    let iconImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "phone")
-//        imageView.contentMode = .scaleAspectFill
-//        return imageView
-//    }()
-    
     override func setupViews() {
         super.setupViews()
-        
         addSubview(nameLabel)
-//        addSubview(iconImageView)
-        
         addConstraintsWithFormat(format: "H:|-8-[v0]|", views: nameLabel)
-        
         addConstraintsWithFormat(format: "V:|[v0]|", views: nameLabel)
-        
-//        addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
-//
-//        addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }
 }
 

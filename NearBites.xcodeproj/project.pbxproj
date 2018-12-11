@@ -127,7 +127,6 @@
 		78A6C45821A3BA310090A2D8 /* NearBites */ = {
 			isa = PBXGroup;
 			children = (
-				F41B033521BCF40F00701BDF /* MapViewController.swift */,
 				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
 				F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
@@ -140,6 +139,7 @@
 				78A6C46521A3BA320090A2D8 /* LaunchScreen.storyboard */,
 				78A6C46821A3BA320090A2D8 /* Info.plist */,
 				78A6C46021A3BA310090A2D8 /* NearBites.xcdatamodeld */,
+				F41B033521BCF40F00701BDF /* MapViewController.swift */,
 			);
 			path = NearBites;
 			sourceTree = "<group>";

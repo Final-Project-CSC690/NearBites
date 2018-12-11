@@ -10,13 +10,30 @@ import UIKit
 import MapKit
 import CDYelpFusionKit
 
+class Info: NSObject {
+    let name: String
+    let imageName: String?
+    
+    init(name: String) {
+        self.name = name
+        self.imageName = nil
+    }
+    
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
+    }
+}
+
 class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     var businessesReturned : Businesses!
     var currBusiness : CDYelpBusiness!
     var annotationView: MKAnnotationView!
-    var currBusinessInfo : [String]!
-    let cellId = "cellId"
+    var currBusinessInfo : [Info]!
+    let TextCellId = "TextCellId"
+    let ImageCellId = "ImageCellId"
+    let cellHeight : CGFloat = 30
     let blackView = UIView()
     let collectionView: UICollectionView =
     {
@@ -30,6 +47,15 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     func showInfo()
     {
         setCurrBusiness()
+        let name : String = currBusiness.name!
+        let address : String = (currBusiness.location?.addressOne)!
+        let city : String = (currBusiness.location?.city)!
+        let state : String = (currBusiness.location?.state)!
+        let zip : String = (currBusiness.location?.zipCode)!
+        let fulladdress : String = address + ", " + city + " " + state + ", " + zip
+        let phone : String = currBusiness.displayPhone!
+        currBusinessInfo = [Info.init(name: name), Info.init(name: fulladdress), Info.init(name: phone, imageName: "phone")]
+        
         if let window = UIApplication.shared.keyWindow
         {
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -39,7 +65,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
             blackView.alpha = 0
             
             window.addSubview(collectionView)
-            let height: CGFloat = 300
+            let height: CGFloat = cellHeight * CGFloat(currBusinessInfo.count) + cellHeight
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             
@@ -48,15 +74,6 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
                 self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
                 }, completion: nil)
         }
-        var name : String = currBusiness.name!
-        var address : String = (currBusiness.location?.addressOne)!
-        var city : String = (currBusiness.location?.city)!
-        var state : String = (currBusiness.location?.state)!
-        var zip : String = (currBusiness.location?.zipCode)!
-        var fulladdress : String = address + ", " + city + " " + state + ", " + zip
-       // var phone
-
-        currBusinessInfo = [name, fulladdress]
         collectionView.reloadData()
     }
     
@@ -89,14 +106,23 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InfoCell
         let info = currBusinessInfo[indexPath.item]
-        cell.info = info
-        return cell
+        if(info.imageName == nil)
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextCellId, for: indexPath) as! TextCell
+            cell.info = info
+            return cell
+        }
+        else
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCellId, for: indexPath) as! ImageCell
+            cell.info = info
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: collectionView.frame.width, height: 50)
+        return CGSize.init(width: collectionView.frame.width, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -108,6 +134,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         super.init()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(InfoCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(TextCell.self, forCellWithReuseIdentifier: TextCellId)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellId)
     }
 }
