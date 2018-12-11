@@ -35,7 +35,7 @@ class EventsViewController: UIViewController {
     var latitude = 0.0
     
     //holds all returned business from search
-    var businessesReturned = Businesses()
+//    var businessesReturned = Businesses()
     
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)

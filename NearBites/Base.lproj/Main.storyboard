@@ -181,6 +181,7 @@
                             <barButtonItem title="ViewMap" id="JDU-D9-MjZ">
                                 <connections>
                                     <action selector="viewMapButton:" destination="OWb-mP-ka1" id="alr-XF-ckk"/>
+                                    <segue destination="1Jf-No-CUZ" kind="show" id="uHm-gc-co5"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Reload" id="Nqv-E5-qtz">
@@ -200,6 +201,7 @@
             </objects>
             <point key="canvasLocation" x="1168.8" y="113.79310344827587"/>
         </scene>
+
         <!--Businesses Location-->
         <scene sceneID="SSD-Oh-fP2">
             <objects>
@@ -310,6 +312,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODK-VB-fiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1168.8" y="893.70314842578716"/>
+        </scene>
+
+        <!--Map-->
+        <scene sceneID="NuM-HW-HOd">
+            <objects>
+                <viewController id="1Jf-No-CUZ" customClass="MapViewController" customModule="NearBites" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q1s-i3-wKn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Y-hC-zgZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="1Jf-No-CUZ" id="JbI-Gk-BKe"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="leading" secondItem="3nm-Ix-WhC" secondAttribute="leading" id="9Kv-tZ-d7x"/>
+                            <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="bottom" secondItem="3nm-Ix-WhC" secondAttribute="bottom" id="CqE-gJ-7Zk"/>
+                            <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="trailing" secondItem="3nm-Ix-WhC" secondAttribute="trailing" id="U2b-mZ-3lq"/>
+                            <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="top" secondItem="3nm-Ix-WhC" secondAttribute="top" id="V8F-Vs-6rQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3nm-Ix-WhC"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="6RS-1u-GBK"/>
+                    <connections>
+                        <outlet property="map" destination="Y0Y-hC-zgZ" id="jtz-xc-c2I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRg-eI-125" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1981.5999999999999" y="113.79310344827587"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="EOC-P2-Q4K">

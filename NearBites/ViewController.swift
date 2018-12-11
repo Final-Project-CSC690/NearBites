@@ -5,7 +5,7 @@
 //  Created by Paul Ancajima on 11/19/18.
 //  Copyright © 2018 Paul Ancajima. All rights reserved.
 //
-
+//123456
 //
 //  ViewController.swift
 //  Yelp API
@@ -19,6 +19,12 @@ import Alamofire
 import CDYelpFusionKit
 import CoreLocation
 import MapKit
+
+
+struct Businesses {
+    var businesses = [CDYelpBusiness]()
+}
+
 
 class ViewController: UIViewController {
     
@@ -36,6 +42,7 @@ class ViewController: UIViewController {
     
     // View Map Button (To display all restaurants at once
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
+        
         //print("simon view will load with segue")
         //BusinessesMapSegue
         //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
@@ -44,13 +51,20 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
         businessDesriptionVC.reviewFromViewController = review
-
+        
         businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
         //businessDesriptionVC.busineesex = Businesses
         //businessDesriptionVC.busineesex = businessesReturned
-
+        
+        if segue.destination is MapViewController
+        {
+            let MapVC = segue.destination as? MapViewController
+            MapVC?.businessesReturned = businessesReturned
+        }
+        
     }
     
+   
     
     // THIS MIGHT BE IMPLEMENTED!
     @IBAction func businessDescription(_ sender: UIButton) {
@@ -85,7 +99,10 @@ class ViewController: UIViewController {
     let itemHeight = CGFloat(500)
     var itemWidth = CGFloat(0)
     var currentItem = 0
- 
+    
+    
+    
+    
     
     override func viewDidLoad() {
         
@@ -102,7 +119,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         collectionView!.collectionViewLayout = layout
         collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
- 
+        
         
         // Eliminating Visible bar!
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -133,7 +150,7 @@ class ViewController: UIViewController {
                                         reviews.count > 1 {
                                         
                                         self.review = reviews.max { $0.rating! < $1.rating!}?.text
-                                       
+                                        
                                     }
         }
     }
@@ -213,6 +230,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         cell.setBusinessDescription(business: business)
         getBusinessReview(CDYelpBusiness: business)
         
+        
         return cell
     }
     
@@ -244,10 +262,6 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
     
 }
 
-//Business struct object
-struct Businesses {
-    var businesses = [CDYelpBusiness]()
-}
 
 //function for displaying star rating
 func starRating (rating: Double) -> CDYelpStars {
