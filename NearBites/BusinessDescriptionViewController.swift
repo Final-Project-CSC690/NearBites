@@ -9,17 +9,22 @@
 import UIKit
 import CDYelpFusionKit
 
-
 class BusinessDescriptionViewController: UIViewController {
    
-    
+    @IBOutlet weak var businessAdress: UILabel!
     @IBOutlet weak var review: UILabel!
     
+    
     var reviewFromViewController: String!
-   
+    //var busineesex: Businesses!
+    
     override func viewDidLoad() {
+        
+        //getBusinesses(yelpAPIClient: yelpAPIClient)
+        // Review
         review.sizeToFit()
         review.text = reviewFromViewController
+        
     }
-    
+   
 }
