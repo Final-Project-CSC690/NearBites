@@ -2,7 +2,7 @@
 //  Business+CoreDataProperties.swift
 //  
 //
-//  Created by Paul Ancajima on 12/11/18.
+//  Created by Paul Ancajima on 12/12/18.
 //
 //
 
@@ -21,5 +21,7 @@ extension Business {
     @NSManaged public var address: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var starRating: NSData?
+    @NSManaged public var lat: Double
+    @NSManaged public var long: Double
 
 }

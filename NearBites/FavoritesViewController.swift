@@ -9,10 +9,14 @@
 import Foundation
 import CoreData
 import UIKit
+import CoreLocation
+import CDYelpFusionKit
+
 
 class FavoritesViewController: UIViewController {
     
     var favoritesList = [Business]()
+    
     @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -37,13 +41,15 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let business = favoritesList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell") as! FavoritesViewCell
-        cell.restaurantName.text = business.name
-        cell.restaurantAddress.text = business.address
-        cell.phone.text = business.phoneNumber
-        cell.restaurantImage.image = UIImage(data: business.image as! Data)
-        cell.starRating.image = UIImage(data: business.starRating as! Data)
+        
+        cell.restaurantName.text = favoritesList[indexPath.row].name
+        cell.restaurantAddress.text = favoritesList[indexPath.row].address
+        cell.phone.text = favoritesList[indexPath.row].phoneNumber
+        cell.restaurantImage.image = UIImage(data: favoritesList[indexPath.row].image as! Data)
+        cell.starRating.image = UIImage(data: favoritesList[indexPath.row].starRating as! Data)
+        cell.long = favoritesList[indexPath.row].long
+        cell.lat = favoritesList[indexPath.row].lat
         
         return cell
     }

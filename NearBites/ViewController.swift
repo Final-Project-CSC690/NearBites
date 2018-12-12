@@ -19,6 +19,7 @@ import Alamofire
 import CDYelpFusionKit
 import CoreLocation
 import MapKit
+import CoreData
 
 
 struct Businesses {
@@ -27,7 +28,7 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
-    var favList = [Business]()
+    
     
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
@@ -93,6 +94,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
 
         // Eliminating Visible bar!
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -196,6 +200,11 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
         cell.starRating.image = UIImage.yelpStars(numberOfStars: starRating(rating: business.rating!), forSize: .small)
         cell.setBusinessDescription(business: business)
+        if inFavorites(address: (business.location?.addressOne!)!){
+            cell.favoritedButton.titleLabel?.text = "❤️"
+        } else {
+            cell.favoritedButton.titleLabel?.text = "♡"
+        }
         getBusinessReview(CDYelpBusiness: business)
         return cell
     }
@@ -227,5 +236,18 @@ func starRating (rating: Double) -> CDYelpStars {
     } else {
         return CDYelpStars.zero
     }
+}
+
+func inFavorites(address: String) -> Bool {
+    let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
+    do {
+        let fetchedData = try PersistenceService.context.fetch(fetchRequest)
+        for i in fetchedData {
+            if i.address == address {
+                return true
+            }
+        }
+    } catch { }
+    return false
 }
 

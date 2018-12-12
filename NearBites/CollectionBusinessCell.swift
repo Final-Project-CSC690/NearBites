@@ -9,22 +9,54 @@ import Foundation
 import UIKit
 import CDYelpFusionKit
 import MapKit
+import CoreData
+
 
 
 class CollectionBusinessCell: UICollectionViewCell {
     
+    var currentRestaurant: CDYelpBusiness!
+    var inFavorites: Bool?
     
-    @IBAction func addToFavorites(_ sender: Any) {
-        let b = Business(context: PersistenceService.context)
-        b.name = businessName.text
-        b.phoneNumber = phone.text
-        b.address = businessAddress.text
-        b.phoneNumber = phone.text
-        b.image = convertImageToNSdata(image: businessImage!)
-        b.starRating = convertImageToNSdata(image: starRating!)
-        PersistenceService.saveContext()
+    @IBOutlet weak var favoritedButton: UIButton!
+    
+    @IBAction func addToFavorites(_ sender: UIButton) {
+        var tempBusiNames = [String]()
+        let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
+        do {
+            let fetchedData = try PersistenceService.context.fetch(fetchRequest)
+            for i in fetchedData {
+                tempBusiNames.append(i.name!)
+            }
+        } catch { }
+        
+        if tempBusiNames.contains(currentRestaurant.name!){
+            let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
+            do {
+                let fetchedData = try PersistenceService.context.fetch(fetchRequest)
+                for i in fetchedData {
+                    if currentRestaurant.name == i.name {
+                        PersistenceService.context.delete(i)
+                    }
+                }
+            } catch { }
+            (sender ).setTitle("♡", for: [])
+            
+        } else {
+            (sender ).setTitle("❤️", for: [])
+            let b = Business(context: PersistenceService.context)
+            b.name = currentRestaurant.name
+            b.phoneNumber = currentRestaurant.phone
+            b.address = currentRestaurant.location?.addressOne
+            b.image = convertImageToNSdata(image: self.businessImage!)
+            b.starRating = convertImageToNSdata(image: self.starRating!)
+            guard let lat = currentRestaurant.coordinates?.latitude else { return }
+            guard let long = currentRestaurant.coordinates?.longitude else { return }
+            b.long = long
+            b.lat = lat
+            PersistenceService.saveContext()
+        }
     }
-    
     
     // Outlets!
     @IBOutlet weak var businessImage: UIImageView!
@@ -37,19 +69,16 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var businessPrice: UILabel!
     @IBOutlet weak var phone: UILabel!
-    
-    
     @IBAction func DirectionsButton(_ sender: UIButton) {
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
-
+        
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapitem = MKMapItem(placemark: placemark)
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapitem.name = businessName.text
         mapitem.openInMaps(launchOptions: options)
-        
     }
     
     var lat = 0.0
@@ -62,6 +91,7 @@ class CollectionBusinessCell: UICollectionViewCell {
     }
     
     func setBusinessDescription(business: CDYelpBusiness){
+        self.currentRestaurant = business
         
         // Loading data to be displayed on cells!
         guard let name = business.name else { return }
@@ -70,12 +100,9 @@ class CollectionBusinessCell: UICollectionViewCell {
         guard let address = business.location else { return }
         guard let reviews = business.reviewCount else { return }
         guard let price = business.price else { return }
-        
         guard let coordinatesLongitude = business.coordinates?.longitude else { return }
         guard let coordinatesLatitude = business.coordinates?.latitude else { return }
-        
         guard let phone = business.phone else { return }
-       
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
@@ -89,7 +116,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessPrice.text = price
         
         // Phone
-         self.phone.text = phone
+        self.phone.text = phone
         
         // Adress
         businessAddress.text = address.addressOne!
@@ -128,6 +155,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessName.textColor = UIColor.white
         businessName.font = UIFont.systemFont(ofSize: 20)
         businessName.font = UIFont.boldSystemFont(ofSize: 20)
+        businessName.adjustsFontSizeToFitWidth = true
         
         // Image style!
         businessImage.layer.cornerRadius = 20
@@ -137,6 +165,9 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Cell Style!
         self.layer.cornerRadius = 20
+        
+        // Phone style
+        phone.adjustsFontSizeToFitWidth = true 
         
     }
 }
