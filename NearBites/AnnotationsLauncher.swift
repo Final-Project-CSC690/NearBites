@@ -34,6 +34,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     var currBusinessInfo : [Info]!
     let TextCellId = "TextCellId"
     let ImageCellId = "ImageCellId"
+    let ImageCellNoStringId = "ImageCellNoStringId"
     let cellHeight : CGFloat = 30
     let blackView = UIView()
     var mapViewController : MapViewController?
@@ -169,6 +170,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         collectionView.delegate = self
         collectionView.register(TextCell.self, forCellWithReuseIdentifier: TextCellId)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellId)
+        //collectionView.register(ImageNoStringCell.self, forCellWithReuseIdentifier: ImageCellNoStringId)
     }
 
 }

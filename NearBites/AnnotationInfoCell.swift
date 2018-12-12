@@ -7,7 +7,26 @@
 //
 
 import UIKit
+class ImageCellNoStringId: BaseCell
+{
+    let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
 
+    override func setupViews() {
+
+        addSubview(iconImageView)
+        
+        addConstraintsWithFormat(format: "H:|-8-[v0(20)]-8-[v1]|", views: iconImageView)
+        
+        addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
+        
+        addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+    }
+}
 class ImageCell : BaseCell
 {
     override var isHighlighted: Bool {

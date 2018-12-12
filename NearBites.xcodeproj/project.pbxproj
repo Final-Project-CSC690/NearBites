@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */,
+				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
@@ -158,7 +159,6 @@
 				78A6C46521A3BA320090A2D8 /* LaunchScreen.storyboard */,
 				78A6C46821A3BA320090A2D8 /* Info.plist */,
 				78A6C46021A3BA310090A2D8 /* NearBites.xcdatamodeld */,
-				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
 				F465725121C080AB003C68C0 /* DirectionsViewController.swift */,
 				F41B033521BCF40F00701BDF /* MapViewController.swift */,
 			);

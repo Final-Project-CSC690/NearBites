@@ -34,38 +34,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // Reload Button
-    @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
-        viewDidLoad()
-    }
-    
-    // View Map Button (To display all restaurants at once
-    @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
-        
-        //print("simon view will load with segue")
-        //BusinessesMapSegue
-        //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "BusinessesMapSegue" {
-                guard let MapVC = segue.destination as? MapViewController else { return }
-                MapVC.businessesReturned = businessesReturned
-                MapVC.currLatitude = latitude
-                MapVC.currLongitude = longitude
-            } else if segue.identifier == "businessDescriptionSegue" {
-                guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
-                businessDesriptionVC.reviewFromViewController = review
-                businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
-        }
-    }
-    
-    
-    // THIS MIGHT BE IMPLEMENTED!
-    @IBAction func businessDescription(_ sender: UIButton) {
-        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
-    }
-    
     //reviews
     var review: String?
     
@@ -120,14 +88,14 @@ class ViewController: UIViewController {
         // Collection view dataSource
         collectionView.dataSource = self
         
-        //function that gets all nearby businesses
-        getBusinesses(yelpAPIClient: yelpAPIClient)
-        
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 300
+        
+        //function that gets all nearby businesses
+        getBusinesses(yelpAPIClient: yelpAPIClient)
         
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
@@ -158,37 +126,25 @@ class ViewController: UIViewController {
         print("lat : \(self.latitude) long: \(self.longitude)")
         
         // Query Yelp Fusion API for business results
-        yelpAPIClient.searchBusinesses(byTerm: term,
-                                       location: nil,
-                                       latitude: self.latitude,
-                                       longitude: self.longitude,
-                                       radius: 10000,
-                                       categories: categories,
-                                       locale: .english_unitedStates,
-                                       limit: 5,
-                                       offset: 0,
-                                       sortBy: .distance,
-                                       priceTiers: nil,
-                                       openNow: true,
-                                       openAt: nil,
-                                       attributes: nil) { (response) in
-                                        
-                                        if let response = response,
-                                            let businesses = response.businesses,
-                                            businesses.count > 0 {
-                                            
-                                            //print(businesses.description)
-                                            
-                                            DispatchQueue.main.async {
-                                                //sort businesses by distance because returned businesses may not be sorted
-                                                if businesses.count > 1 {
-                                                    self.businessesReturned.businesses = businesses.sorted(by: { ($0.distance!.isLess(than: $1.distance!))})
-                                                } else {
-                                                    self.businessesReturned.businesses = businesses
-                                                }
-                                                self.group.leave()
-                                            }
-                                        }
+        yelpAPIClient.searchBusinesses(byTerm: term,                    location: nil,      latitude: self.latitude,
+                                       longitude: self.longitude,       radius: 10000,      categories: categories,
+                                       locale: .english_unitedStates,   limit: 5,           offset: 0,
+                                       sortBy: .distance,               priceTiers: nil,    openNow: true,
+                                       openAt: nil,                     attributes: nil)
+        {  (response) in
+            if let response = response,
+                let businesses = response.businesses,
+                businesses.count > 0 {
+                    DispatchQueue.main.async {
+                        //sort businesses by distance because returned businesses may not be sorted
+                        if businesses.count > 1 {
+                            self.businessesReturned.businesses = businesses.sorted(by: { ($0.distance!.isLess(than: $1.distance!))})
+                        } else {
+                            self.businessesReturned.businesses = businesses
+                        }
+                        self.group.leave()
+                    }
+            }
         }
     }
 }
@@ -252,7 +208,37 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         targetContentOffset.pointee = point
     }
     
+    // Reload Button
+    @IBAction func reloadbusinessButton(_ sender: UIBarButtonItem) {
+        viewDidLoad()
+    }
     
+    // View Map Button (To display all restaurants at once
+    @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
+        
+        //print("simon view will load with segue")
+        //BusinessesMapSegue
+        //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "BusinessesMapSegue" {
+            guard let MapVC = segue.destination as? MapViewController else { return }
+            MapVC.businessesReturned = businessesReturned
+            MapVC.currLatitude = latitude
+            MapVC.currLongitude = longitude
+        } else if segue.identifier == "businessDescriptionSegue" {
+            guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
+            businessDesriptionVC.reviewFromViewController = review
+            businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
+        }
+    }
+    
+    
+    // THIS MIGHT BE IMPLEMENTED!
+    @IBAction func businessDescription(_ sender: UIButton) {
+        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
+    }
 }
 
 
