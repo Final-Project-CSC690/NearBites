@@ -23,6 +23,7 @@ class EventsViewController: UIViewController {
     // Filter Search Category to Restaurants!
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
     
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //Location manager
@@ -186,9 +187,6 @@ extension EventsViewController: CLLocationManagerDelegate {
 extension EventsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("yo")
-        //print(self.businessesReturned.events.count)
-        //return people.count
         return self.businessesReturned.events.count
     }
     
@@ -196,10 +194,10 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let businesx = self.businessesReturned.events[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cellx", for: indexPath) as! CollectionEventsCell
-        //cell.eventName.text = people[indexPath.row]
         cell.setEventDescription(event: businesx)
         return cell
  
+       
         
         /*
         let businesx = self.businessesReturned.events[indexPath.row]
