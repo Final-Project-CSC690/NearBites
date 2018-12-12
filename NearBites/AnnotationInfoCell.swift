@@ -10,11 +10,23 @@ import UIKit
 
 class ImageCell : BaseCell
 {
+    override var isHighlighted: Bool {
+        didSet{
+            
+            let orange = UIColor(displayP3Red: 1, green: 0.592157, blue: 0.0588235, alpha: 1)
+            let blue = UIColor(displayP3Red: 0.26309, green: 0.359486, blue: 0.445889, alpha: 1)
+            
+            backgroundColor = isHighlighted ? orange : blue
+            nameLabel.textColor = isHighlighted ? .white : .black
+            iconImageView.tintColor = isHighlighted ? .white : .black
+        }
+    }
     var info: Info? {
         didSet {
             nameLabel.text = info?.name
             if let imageName = info?.imageName {
-                iconImageView.image = UIImage(named: imageName)
+                iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+                iconImageView.tintColor = .black
             }
         }
     }
@@ -22,6 +34,7 @@ class ImageCell : BaseCell
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     

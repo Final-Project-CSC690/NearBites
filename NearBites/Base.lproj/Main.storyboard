@@ -327,7 +327,7 @@
                                 </connections>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.26308962699999999" green="0.35948565599999999" blue="0.44588917490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="leading" secondItem="3nm-Ix-WhC" secondAttribute="leading" id="9Kv-tZ-d7x"/>
                             <constraint firstItem="Y0Y-hC-zgZ" firstAttribute="bottom" secondItem="3nm-Ix-WhC" secondAttribute="bottom" id="CqE-gJ-7Zk"/>
@@ -498,7 +498,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="location" width="20" height="20"/>
+        <image name="location" width="40" height="40"/>
         <image name="yelp_burst_logo_red" width="120" height="120"/>
     </resources>
 </document>

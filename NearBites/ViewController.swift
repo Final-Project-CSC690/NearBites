@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         //BusinessesMapSegue
         //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "BusinessesMapSegue" {
                 guard let MapVC = segue.destination as? MapViewController else { return }
