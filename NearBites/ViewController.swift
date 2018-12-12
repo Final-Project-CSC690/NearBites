@@ -25,7 +25,6 @@ struct Businesses {
     var businesses = [CDYelpBusiness]()
 }
 
-
 class ViewController: UIViewController {
     
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
@@ -86,20 +85,22 @@ class ViewController: UIViewController {
     //holds all returned business from search
     var businessesReturned = Businesses()
     
+    /*
     // Cell size and position!
     let collectionMargin = CGFloat(16)
     let itemSpacing = CGFloat(15)
     let itemHeight = CGFloat(500)
     var itemWidth = CGFloat(0)
     var currentItem = 0
-    
-    
-
+    */
+ 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Paging effect!
+        //self.navigationItem.rightBarButtonItem = UIImage(named: "maps")
+        /*
+        // Paging style!
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         itemWidth =  UIScreen.main.bounds.width - collectionMargin * 2.0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -110,7 +111,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         collectionView!.collectionViewLayout = layout
         collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
-        
+        */
         
         // Eliminating Visible bar!
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -210,6 +211,8 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //print("yo")
+        //print(self.businessesReturned.businesses.count)
         return self.businessesReturned.businesses.count
     }
     
@@ -221,11 +224,10 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         cell.setBusinessDescription(business: business)
         getBusinessReview(CDYelpBusiness: business)
         
-        
         return cell
     }
-    
-    
+
+    /*
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = Float(itemWidth + itemSpacing)
@@ -233,6 +235,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         let contentWidth = Float(collectionView!.contentSize.width  )
         var newPage = Float(self.pageControl.currentPage)
         
+     
         if velocity.x == 0 {
             newPage = floor( (targetXContentOffset - Float(pageWidth) / 2) / Float(pageWidth)) + 1.0
         } else {
@@ -247,10 +250,10 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         
         self.pageControl.currentPage = Int(newPage)
         let point = CGPoint (x: CGFloat(newPage * pageWidth), y: targetContentOffset.pointee.y)
+ 
         targetContentOffset.pointee = point
-    }
-    
-    
+ 
+    }*/
 }
 
 

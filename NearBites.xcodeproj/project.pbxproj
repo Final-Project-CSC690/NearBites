@@ -18,19 +18,16 @@
 		78A6C47221A3BA320090A2D8 /* NearBitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C47121A3BA320090A2D8 /* NearBitesTests.swift */; };
 		78A6C47D21A3BA330090A2D8 /* NearBitesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C47C21A3BA330090A2D8 /* NearBitesUITests.swift */; };
 		9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429EEE21AF3D8100F248D8 /* MainViewController.swift */; };
-		9CB8D79F21BF24C500873142 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8D79E21BF24C500873142 /* Constant.swift */; };
+		9CE4333621C0812A00F0E35F /* CollectionEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4333521C0812A00F0E35F /* CollectionEventsCell.swift */; };
 		9CED666221BF84FC0007D6B9 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CED666121BF84FC0007D6B9 /* EventsViewController.swift */; };
 		9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */; };
 		9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEED921AD173500B5B54D /* Constant.swift */; };
 		9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */; };
-
 		9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */; };
 		9CF08E6E21B1E7A300D0CC71 /* BusinessMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */; };
-
 		F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B033521BCF40F00701BDF /* MapViewController.swift */; };
 		F4AD11A221BEA168008D5DC8 /* AnnotationsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */; };
 		F4B8836021BEF53A003FB31B /* AnnotationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,20 +67,16 @@
 		78A6C47C21A3BA330090A2D8 /* NearBitesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBitesUITests.swift; sourceTree = "<group>"; };
 		78A6C47E21A3BA330090A2D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C429EEE21AF3D8100F248D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		9CB8D79E21BF24C500873142 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		9CE4333521C0812A00F0E35F /* CollectionEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEventsCell.swift; sourceTree = "<group>"; };
 		9CED666121BF84FC0007D6B9 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9CEFEED921AD173500B5B54D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBusinessCell.swift; sourceTree = "<group>"; };
-
 		9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDescriptionViewController.swift; sourceTree = "<group>"; };
 		9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMapView.swift; sourceTree = "<group>"; };
-
 		F41B033521BCF40F00701BDF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsLauncher.swift; sourceTree = "<group>"; };
 		F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationInfoCell.swift; sourceTree = "<group>"; };
-
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,10 +146,10 @@
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
 				9CEF7CAA21B51C8800809C3D /* SettingViewController.swift */,
 				9CED666121BF84FC0007D6B9 /* EventsViewController.swift */,
+				9CE4333521C0812A00F0E35F /* CollectionEventsCell.swift */,
 				9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */,
 				9CF08E6D21B1E7A300D0CC71 /* BusinessMapView.swift */,
 				9C429EEE21AF3D8100F248D8 /* MainViewController.swift */,
-				9CB8D79E21BF24C500873142 /* Constant.swift */,
 				9CEFEED921AD173500B5B54D /* Constant.swift */,
 				78A6C45D21A3BA310090A2D8 /* Main.storyboard */,
 				78A6C46321A3BA320090A2D8 /* Assets.xcassets */,
@@ -379,20 +372,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE4333621C0812A00F0E35F /* CollectionEventsCell.swift in Sources */,
 				9CED666221BF84FC0007D6B9 /* EventsViewController.swift in Sources */,
 				9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */,
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
 				9CF08E6C21B1E13200D0CC71 /* BusinessDescriptionViewController.swift in Sources */,
 				78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */,
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,
-
 				9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */,
 				9CF08E6E21B1E7A300D0CC71 /* BusinessMapView.swift in Sources */,
-				9CB8D79F21BF24C500873142 /* Constant.swift in Sources */,
-
 				F4B8836021BEF53A003FB31B /* AnnotationInfoCell.swift in Sources */,
 				F4AD11A221BEA168008D5DC8 /* AnnotationsLauncher.swift in Sources */,
-
 				9CEFEEDA21AD173600B5B54D /* Constant.swift in Sources */,
 				9CEFEEDC21AD185200B5B54D /* CollectionBusinessCell.swift in Sources */,
 				F41B033621BCF40F00701BDF /* MapViewController.swift in Sources */,
@@ -570,7 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFX279CHZD;
 				INFOPLIST_FILE = NearBites/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -589,7 +579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFX279CHZD;
 				INFOPLIST_FILE = NearBites/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -33,7 +33,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapitem.name = businessName.text
         mapitem.openInMaps(launchOptions: options)
-        
     }
     
     var lat = 0.0

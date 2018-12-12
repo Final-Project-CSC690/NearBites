@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class SettingViewController:  UITableViewController {
+class SettingViewController:  UIViewController{
     
     override func viewDidLoad() {
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
     }
 }
