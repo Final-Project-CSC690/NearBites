@@ -28,8 +28,6 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
-    
-    
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     

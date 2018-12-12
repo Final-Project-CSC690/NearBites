@@ -18,7 +18,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     var currentRestaurant: CDYelpBusiness!
     
     @IBOutlet weak var favoritedButton: UIButton!
-    
     @IBAction func addToFavorites(_ sender: UIButton) {
         var tempBusiNames = [String]()
         let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
@@ -71,7 +70,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBAction func DirectionsButton(_ sender: UIButton) {
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
-        
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapitem = MKMapItem(placemark: placemark)
@@ -144,7 +142,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Review Styles
         reviewsLabel.textColor = UIColor.gray
-        
         
         // Distance Style
         businessDistance.textColor = UIColor.white

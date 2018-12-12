@@ -33,24 +33,5 @@ class FavoritesViewCell: UITableViewCell {
     var lat = 0.0
     var long = 0.0
     
-//    func setFavCell(business: CDYelpBusiness){
-//        guard let restaurantName = business.name else { return }
-//        guard let restaurantAddress = business.location?.addressOne else { return }
-//        guard let restaurantImage = business.imageUrl else { return }
-//        guard let phoneNumber = business.phone else { return }
-//        guard let latitude = business.coordinates?.latitude else { return }
-//        guard let longitude = business.coordinates?.longitude else { return }
-//
-//        let url = URL(string: restaurantImage.absoluteString)
-//        let data = try? Data(contentsOf: url!)
-//
-//        self.restaurantImage.image = UIImage(data: data!)
-//        self.restaurantName.text = restaurantName
-//        self.restaurantAddress.text = restaurantAddress
-//        self.lat = latitude
-//        self.long = longitude
-//        self.phone.text = phoneNumber
-//    }
-    
 }
 
