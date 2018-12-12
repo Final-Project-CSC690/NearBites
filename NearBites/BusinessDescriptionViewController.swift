@@ -17,7 +17,7 @@ class BusinessDescriptionViewController: UIViewController {
     
     var reviewFromViewController: String!
     var address: String!
-   //var busineesex: Businesses!
+   
 
     override func viewDidLoad() {
         

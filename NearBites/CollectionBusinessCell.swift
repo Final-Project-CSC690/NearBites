@@ -10,7 +10,18 @@ import UIKit
 import CDYelpFusionKit
 import MapKit
 
+
 class CollectionBusinessCell: UICollectionViewCell {
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+        let b = Business(context: PersistenceService.context)
+        b.name = businessName.text
+        b.address = businessAddress.text
+        b.phoneNumber = phone
+        b.image = convertImageToNSdata(image: businessImage!)
+        PersistenceService.saveContext()
+    }
+    
     
     // Outlets!
     @IBOutlet weak var businessImage: UIImageView!
@@ -22,6 +33,8 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessAddress: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var businessPrice: UILabel!
+    var phone: String? = ""
+   
     
     @IBAction func DirectionsButton(_ sender: UIButton) {
         let latitude:CLLocationDegrees = lat
@@ -40,6 +53,11 @@ class CollectionBusinessCell: UICollectionViewCell {
     var long = 0.0
     var direction = " "
     
+    func convertImageToNSdata(image: UIImageView) -> NSData {
+        let returnData = image.image?.pngData()! as! NSData
+        return returnData
+    }
+    
     func setBusinessDescription(business: CDYelpBusiness){
         
         // Loading data to be displayed on cells!
@@ -52,6 +70,9 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         guard let coordinatesLongitude = business.coordinates?.longitude else { return }
         guard let coordinatesLatitude = business.coordinates?.latitude else { return }
+        
+        guard let phone = business.phone else { return }
+        self.phone = phone
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
