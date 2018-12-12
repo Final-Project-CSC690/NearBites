@@ -40,6 +40,11 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         let business = favoritesList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell") as! FavoritesViewCell
         cell.restaurantName.text = business.name
+        cell.restaurantAddress.text = business.address
+        cell.phone.text = business.phoneNumber
+        cell.restaurantImage.image = UIImage(data: business.image as! Data)
+        cell.starRating.image = UIImage(data: business.starRating as! Data)
+        
         return cell
     }
     
@@ -54,4 +59,9 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
     }
     
+    
+    func convertImageToNSdata(image: UIImageView) -> NSData {
+        let returnData = image.image?.pngData()! as! NSData
+        return returnData
+    }
 }

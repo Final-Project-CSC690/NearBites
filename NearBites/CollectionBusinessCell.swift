@@ -13,12 +13,15 @@ import MapKit
 
 class CollectionBusinessCell: UICollectionViewCell {
     
+    
     @IBAction func addToFavorites(_ sender: Any) {
         let b = Business(context: PersistenceService.context)
         b.name = businessName.text
+        b.phoneNumber = phone.text
         b.address = businessAddress.text
-        b.phoneNumber = phone
+        b.phoneNumber = phone.text
         b.image = convertImageToNSdata(image: businessImage!)
+        b.starRating = convertImageToNSdata(image: starRating!)
         PersistenceService.saveContext()
     }
     
@@ -33,8 +36,8 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessAddress: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var businessPrice: UILabel!
-    var phone: String? = ""
-   
+    @IBOutlet weak var phone: UILabel!
+    
     
     @IBAction func DirectionsButton(_ sender: UIButton) {
         let latitude:CLLocationDegrees = lat
@@ -72,7 +75,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         guard let coordinatesLatitude = business.coordinates?.latitude else { return }
         
         guard let phone = business.phone else { return }
-        self.phone = phone
+       
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
@@ -84,6 +87,9 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Price
         businessPrice.text = price
+        
+        // Phone
+         self.phone.text = phone
         
         // Adress
         businessAddress.text = address.addressOne!
