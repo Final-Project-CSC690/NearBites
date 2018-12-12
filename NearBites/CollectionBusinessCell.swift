@@ -16,7 +16,6 @@ import CoreData
 class CollectionBusinessCell: UICollectionViewCell {
     
     var currentRestaurant: CDYelpBusiness!
-    var inFavorites: Bool?
     
     @IBOutlet weak var favoritedButton: UIButton!
     

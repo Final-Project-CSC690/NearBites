@@ -28,6 +28,7 @@ class FavoritesViewController: UIViewController {
             self.favoritesTableView.reloadData()
         } catch { }
     }
+    
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -63,11 +64,13 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         PersistenceService.saveContext()
         tableView.reloadData()
+        
+        
     }
-    
     
     func convertImageToNSdata(image: UIImageView) -> NSData {
         let returnData = image.image?.pngData()! as! NSData
         return returnData
     }
 }
+

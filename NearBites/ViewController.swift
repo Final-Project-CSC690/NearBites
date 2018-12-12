@@ -59,6 +59,7 @@ class ViewController: UIViewController {
             businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
         } else if segue.identifier == "favoritesVCSegue" {
             guard let favoritesVC = segue.destination as? FavoritesViewController else { return }
+            
         }
     }
     
@@ -95,9 +96,6 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        
-        
-
         // Eliminating Visible bar!
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
@@ -118,6 +116,9 @@ class ViewController: UIViewController {
         self.group.notify(queue: .main) {
             self.collectionView.reloadData()
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
     
     func getBusinessReview(CDYelpBusiness: CDYelpBusiness) {
@@ -201,15 +202,16 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         cell.starRating.image = UIImage.yelpStars(numberOfStars: starRating(rating: business.rating!), forSize: .small)
         cell.setBusinessDescription(business: business)
         if inFavorites(address: (business.location?.addressOne!)!){
-            cell.favoritedButton.titleLabel?.text = "❤️"
+            cell.favoritedButton.setTitle("❤️", for: .normal)
         } else {
-            cell.favoritedButton.titleLabel?.text = "♡"
+            cell.favoritedButton.setTitle("♡", for: .normal)
         }
         getBusinessReview(CDYelpBusiness: business)
         return cell
     }
     
 }
+
 
 //function for displaying star rating
 func starRating (rating: Double) -> CDYelpStars {
@@ -250,4 +252,5 @@ func inFavorites(address: String) -> Bool {
     } catch { }
     return false
 }
+
 
