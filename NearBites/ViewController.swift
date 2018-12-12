@@ -51,6 +51,8 @@ class ViewController: UIViewController {
             if segue.identifier == "BusinessesMapSegue" {
                 guard let MapVC = segue.destination as? MapViewController else { return }
                 MapVC.businessesReturned = businessesReturned
+                MapVC.currLatitude = latitude
+                MapVC.currLongitude = longitude
             } else if segue.identifier == "businessDescriptionSegue" {
                 guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
                 businessDesriptionVC.reviewFromViewController = review

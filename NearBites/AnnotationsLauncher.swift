@@ -95,6 +95,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
             
             if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+                
             }
         }) { (completed: Bool) in
                 if info.name == "Directions" {

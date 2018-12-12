@@ -141,7 +141,6 @@
 		78A6C45821A3BA310090A2D8 /* NearBites */ = {
 			isa = PBXGroup;
 			children = (
-				F465725121C080AB003C68C0 /* DirectionsViewController.swift */,
 				F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */,
 				78A6C45B21A3BA310090A2D8 /* ViewController.swift */,
 				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
@@ -160,6 +159,7 @@
 				78A6C46821A3BA320090A2D8 /* Info.plist */,
 				78A6C46021A3BA310090A2D8 /* NearBites.xcdatamodeld */,
 				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
+				F465725121C080AB003C68C0 /* DirectionsViewController.swift */,
 				F41B033521BCF40F00701BDF /* MapViewController.swift */,
 			);
 			path = NearBites;
@@ -564,13 +564,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8T6PTYN77B;
 				INFOPLIST_FILE = NearBites/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.mail.sfsu.pancajima.student.NearBites;
+				PRODUCT_BUNDLE_IDENTIFIER = NearBites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -583,13 +583,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8T6PTYN77B;
 				INFOPLIST_FILE = NearBites/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.mail.sfsu.pancajima.student.NearBites;
+				PRODUCT_BUNDLE_IDENTIFIER = NearBites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

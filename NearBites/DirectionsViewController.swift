@@ -11,22 +11,32 @@ import MapKit
 import CDYelpFusionKit
 import CoreLocation
 
-class DirectionsViewController: UIViewController
+class DirectionsViewController: UIViewController, MKMapViewDelegate
 {
  //   let blue = UIColor(displayP3Red: 0.26309, green: 0.359486, blue: 0.445889, alpha: 1)
-    var restuarantInfo : CDYelpBusiness!
+    var restaurantInfo : CDYelpBusiness!
+    var currLatitude : CLLocationDegrees!
+    var currLongitude : CLLocationDegrees!
+    let mapView = MKMapView()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let restaurantLongitude = restaurantInfo.coordinates!.longitude
+        let restaurantLatitude = restaurantInfo.coordinates!.latitude
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2DMake(currLatitude!, currLongitude!)))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2DMake(restaurantLatitude!, restaurantLongitude!)))
+        request.requestsAlternateRoutes = true
+        request.transportType = .automobile
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
   //      self.view.backgroundColor = blue
-        self.navigationItem.title = restuarantInfo.name
+        self.navigationItem.title = restaurantInfo.name
         
         super.viewWillAppear(animated)
-
-        let mapView = MKMapView()
 
         let leftMargin:CGFloat = 0
         let topMargin:CGFloat = 0
