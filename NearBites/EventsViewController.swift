@@ -53,7 +53,6 @@ class EventsViewController: UIViewController {
         // Collection view dataSource
         collectionView.dataSource = self
         
-        
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
@@ -127,7 +126,7 @@ class EventsViewController: UIViewController {
         
         yelpAPIClient.searchEvents(byLocale: nil,
                                    offset: nil,
-                                   limit: 10,
+                                   limit: 5,
                                    sortBy: .descending,
                                    sortOn: .popularity,
                                    categories: [.foodAndDrink],

@@ -46,6 +46,10 @@ class ViewController: UIViewController {
         //performSegue(withIdentifier: "BusinessesMapSegue", sender: self)
     }
     
+    @IBAction func nearByEvents(_ sender: UIButton) {
+        performSegue(withIdentifier: "SegueEvents", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "BusinessesMapSegue" {
                 guard let MapVC = segue.destination as? MapViewController else { return }

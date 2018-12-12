@@ -31,8 +31,6 @@ class CollectionEventsCell: UICollectionViewCell {
     func setEventDescription(event: CDYelpEvent){
         
         
-        
-        
         guard let name = event.name else { return }
         guard let image = event.imageUrl else { return }
         guard let address = event.location else { return }
@@ -40,6 +38,7 @@ class CollectionEventsCell: UICollectionViewCell {
         guard let interestedCount = event.attendingCount else { return }
         guard let isFree = event.isFree else { return }
         guard let eventLink = event.eventSiteUrl else { return }
+        guard let price = event.cost else { return }
         //guard let price = event.cost else { return }
         //guard let category = event.category else { return }
         //guard let cost = event.cost else { return }
@@ -48,7 +47,7 @@ class CollectionEventsCell: UICollectionViewCell {
         //guard let location = event.location else { return }
         //guard let address = event.location else { return }
         
-        //print(date)
+        print(price)
         //print(name)
         //print(address.addressOne!)
         //print(cost)
@@ -114,7 +113,7 @@ class CollectionEventsCell: UICollectionViewCell {
         eventAttendingCount.text = " Attending: \(String(attendingCount))"
         
         // Cost
-        eventIsFree.text = "Cost:  \(charge)"
+        eventIsFree.text = "Cost: $\(price)"
         
     }
     
