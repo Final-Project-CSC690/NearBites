@@ -28,6 +28,7 @@ struct Businesses {
 
 class ViewController: UIViewController {
     
+    
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
@@ -80,6 +81,19 @@ class ViewController: UIViewController {
     //holds all returned business from search
     var businessesReturned = Businesses()
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width  = view.frame.size.width - 20
+            layout.itemSize = CGSize(width: width, height: width/2)
+        } else if UIDevice.current.orientation.isPortrait,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width  = view.frame.size.height - 20
+            let height = view.frame.size.height - 20
+            layout.itemSize = CGSize(width: width, height: height)
+        }
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -104,6 +118,8 @@ class ViewController: UIViewController {
         self.group.notify(queue: .main) {
             self.collectionView.reloadData()
         }
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
@@ -180,12 +196,14 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+
 extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.businessesReturned.businesses.count
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //print("inside collection view")
         let business = self.businessesReturned.businesses[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
         cell.starRating.image = UIImage.yelpStars(numberOfStars: starRating(rating: business.rating!), forSize: .small)
@@ -198,14 +216,17 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         getBusinessReview(CDYelpBusiness: business)
         
         // Image style!
+        
         cell.layer.cornerRadius = 20
-        cell.clipsToBounds = true
+//        cell.clipsToBounds = true
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
+        
         
         return cell
     }
 }
+
 
 //function for displaying star rating
 func starRating (rating: Double) -> CDYelpStars {

@@ -19,8 +19,6 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     
     var link = "4"
-    
-    
     @IBAction func callButton(_ sender: UIButton) {
         
         print(link)
