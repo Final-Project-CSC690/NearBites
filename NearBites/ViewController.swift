@@ -206,13 +206,13 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         }
         getBusinessReview(CDYelpBusiness: business)
         
-        /*
+        
         // Image style!
         cell.layer.cornerRadius = 20
         cell.clipsToBounds = true
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
-        */
+ 
         
         return cell
     }
