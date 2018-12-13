@@ -20,10 +20,13 @@ class MapViewController: UIViewController
     var businessesReturned: Businesses!
     var annotation: [MKPointAnnotation] = []
     var tempAnnotation : MKPointAnnotation!
-    let annotationLauncher : AnnotationLauncher = {
+    lazy var annotationLauncher : AnnotationLauncher = {
         let launcher = AnnotationLauncher()
+        launcher.mapViewController = self
         return launcher
     }()
+    var currLatitude : CLLocationDegrees!
+    var currLongitude : CLLocationDegrees!
     
     override func viewDidLoad()
     {
@@ -50,6 +53,18 @@ class MapViewController: UIViewController
             map.addAnnotations(annotation)
         }
     }
+    
+    func showControllerForDirections(currBusiness: CDYelpBusiness) {
+        let directionsViewController : DirectionsViewController = {
+            let directionVC = DirectionsViewController()
+            directionVC.restaurantInfo = currBusiness
+            directionVC.currLatitude = currLatitude
+            directionVC.currLongitude = currLongitude
+            return directionVC
+        }()
+        navigationController?.pushViewController(directionsViewController, animated: true)
+    }
+
 }
 
 extension MapViewController : MKMapViewDelegate
@@ -59,6 +74,11 @@ extension MapViewController : MKMapViewDelegate
         annotationLauncher.businessesReturned = self.businessesReturned
         annotationLauncher.annotationView = view
         annotationLauncher.showInfo()
+        for annotation in annotation
+        {
+            map.deselectAnnotation(annotation, animated: true)
+        }
     }
+    
 }
 

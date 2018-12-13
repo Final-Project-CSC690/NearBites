@@ -25,7 +25,8 @@ class Info: NSObject {
     }
 }
 
-class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+{
     
     var businessesReturned : Businesses!
     var currBusiness : CDYelpBusiness!
@@ -33,8 +34,10 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     var currBusinessInfo : [Info]!
     let TextCellId = "TextCellId"
     let ImageCellId = "ImageCellId"
+    let ImageCellNoStringId = "ImageCellNoStringId"
     let cellHeight : CGFloat = 30
     let blackView = UIView()
+    var mapViewController : MapViewController?
     let collectionView: UICollectionView =
     {
         let layout = UICollectionViewFlowLayout()
@@ -54,7 +57,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         let zip : String = (currBusiness.location?.zipCode)!
         let fulladdress : String = address + ", " + city + " " + state + ", " + zip
         let phone : String = currBusiness.displayPhone!
-        currBusinessInfo = [Info.init(name: name), Info.init(name: fulladdress), Info.init(name: phone, imageName: "phone")]
+        currBusinessInfo = [Info.init(name: name), Info.init(name: fulladdress), Info.init(name: phone, imageName: "phone"), Info.init(name: "Directions", imageName:"direction")]
         
         if let window = UIApplication.shared.keyWindow
         {
@@ -68,7 +71,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
             let height: CGFloat = cellHeight * CGFloat(currBusinessInfo.count) + cellHeight
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
-            
+            collectionView.backgroundColor = UIColor(displayP3Red: 0.26309, green: 0.359486, blue: 0.445889, alpha: 1)
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations:{
                 self.blackView.alpha = 1
                 self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
@@ -77,16 +80,39 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         collectionView.reloadData()
     }
     
-    @objc func handleDismiss(_ recognizer: UITapGestureRecognizer)
-    {
-        self.blackView.alpha = 0
-        
-        if let window = UIApplication.shared.keyWindow{
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+    @objc func handleDismiss() {
+        UIView.animate(withDuration: 0.5) {
+            self.blackView.alpha = 0
+            
+            if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-            }, completion: nil)
+            }
         }
     }
+    
+    func handleSelection(info: Info) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            
+            if let window = UIApplication.shared.keyWindow {
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+                
+            }
+        }) { (completed: Bool) in
+                if info.name == "Directions" {
+                    self.mapViewController?.showControllerForDirections(currBusiness: self.currBusiness)
+                }
+                else if info.imageName == "phone"
+                {
+                    if let phoneString = self.currBusiness.phone
+                    {
+                        guard let number = URL(string: "tel://" + phoneString) else { return }
+                        UIApplication.shared.open(number)
+                    }
+                }
+            }
+    }
+    
     
     func setCurrBusiness()
     {
@@ -99,6 +125,9 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
             }
         }
     }
+    
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -128,6 +157,11 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selection = currBusinessInfo[indexPath.item]
+        handleSelection(info: selection)
+                
+    }
     
     override init()
     {
@@ -136,5 +170,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         collectionView.delegate = self
         collectionView.register(TextCell.self, forCellWithReuseIdentifier: TextCellId)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellId)
+        //collectionView.register(ImageNoStringCell.self, forCellWithReuseIdentifier: ImageCellNoStringId)
     }
+
 }

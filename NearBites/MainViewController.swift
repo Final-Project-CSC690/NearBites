@@ -14,8 +14,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var Tittle: UILabel!
     
-    
-    
     @IBOutlet weak var yelpLogo: UIImageView!
     
     @IBAction func SearchButton(_ sender: UIButton) {

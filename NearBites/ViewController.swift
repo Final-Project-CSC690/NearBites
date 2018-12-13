@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Reload Button
@@ -96,12 +97,15 @@ class ViewController: UIViewController {
         // Collection view dataSource
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 300
+        
+        //function that gets all nearby businesses
+        getBusinesses(yelpAPIClient: yelpAPIClient)
         
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
@@ -163,6 +167,7 @@ class ViewController: UIViewController {
                                                 self.group.leave()
                                             }
                                         }
+
         }
     }
 }
@@ -207,9 +212,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         
         return cell
     }
-    
 }
-
 
 //function for displaying star rating
 func starRating (rating: Double) -> CDYelpStars {
