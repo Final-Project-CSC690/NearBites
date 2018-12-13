@@ -35,21 +35,21 @@ class CollectionBusinessCell: UICollectionViewCell {
     }
     
     @IBAction func addToFavorites(_ sender: UIButton) {
-        var tempBusiNames = [String]()
+        var tempBusiAddr = [String]()
         let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
         do {
             let fetchedData = try PersistenceService.context.fetch(fetchRequest)
             for i in fetchedData {
-                tempBusiNames.append(i.name!)
+                tempBusiAddr.append(i.address!)
             }
         } catch { }
         
-        if tempBusiNames.contains(currentRestaurant.name!){
+        if tempBusiAddr.contains((currentRestaurant.location?.addressOne)!){
             let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
             do {
                 let fetchedData = try PersistenceService.context.fetch(fetchRequest)
                 for i in fetchedData {
-                    if currentRestaurant.name == i.name {
+                    if currentRestaurant.location?.addressOne! == i.address {
                         PersistenceService.context.delete(i)
                     }
                 }

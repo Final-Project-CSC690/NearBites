@@ -33,9 +33,7 @@ class DirectionsViewController: UIViewController
             annotation.title = restaurantInfo.name
             return annotation
         }
-//        var currLocation = CLLocation(latitude: currLatitude, longitude: currLongitude)
-//        var restaurantLocation = CLLocation(latitude: restaurantLatitude, longitude: restaurantLongitude)
-//        var distance = currLocation.distance(from: restaurantLocation)
+        
         mapView.addAnnotations([restaurantAnnotation])
         mapView.showAnnotations(mapView.annotations, animated: true)
 

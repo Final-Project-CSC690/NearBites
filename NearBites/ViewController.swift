@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Reload Button
@@ -43,15 +42,12 @@ class ViewController: UIViewController {
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
     }
     
-    // THIS MIGHT BE IMPLEMENTED!
-    @IBAction func businessDescription(_ sender: UIButton) {
-        performSegue(withIdentifier: "businessDescriptionSegue", sender: self)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "BusinessesMapSegue" {
             guard let MapVC = segue.destination as? MapViewController else { return }
             MapVC.businessesReturned = businessesReturned
+            MapVC.currLatitude = latitude
+            MapVC.currLongitude = longitude
         } else if segue.identifier == "businessDescriptionSegue" {
             guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
             businessDesriptionVC.reviewFromViewController = review
@@ -88,11 +84,11 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        // Eliminating Visible bar!
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
         //function that gets all nearby businesses
         getBusinesses(yelpAPIClient: yelpAPIClient)
+        
+        // Eliminating Visible bar!
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         // Collection view dataSource
         collectionView.dataSource = self
@@ -103,9 +99,6 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 300
-        
-        //function that gets all nearby businesses
-        getBusinesses(yelpAPIClient: yelpAPIClient)
         
         //notification when task is completed. Can input a print string for debugging
         self.group.notify(queue: .main) {
@@ -127,7 +120,6 @@ class ViewController: UIViewController {
         }
     }
     
-   
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
         self.group.enter()
         
@@ -136,6 +128,7 @@ class ViewController: UIViewController {
         
         // Coordinates before search!
         print("lat : \(self.latitude) long: \(self.longitude)")
+        
         
         // Query Yelp Fusion API for business results
         yelpAPIClient.searchBusinesses(byTerm: term,
@@ -253,5 +246,3 @@ func inFavorites(address: String) -> Bool {
     } catch { }
     return false
 }
-
-
