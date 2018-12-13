@@ -47,9 +47,6 @@ class EventsViewController: UIViewController {
         
         getBusinesses(yelpAPIClient: yelpAPIClient)
         
-        
-        
-        
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()

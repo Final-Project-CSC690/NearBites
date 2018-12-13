@@ -84,11 +84,11 @@ class ViewController: UIViewController {
     var businessesReturned = Businesses()
     
     // Cell size and position!
-    let collectionMargin = CGFloat(16)
-    let itemSpacing = CGFloat(15)
-    let itemHeight = CGFloat(500)
-    var itemWidth = CGFloat(0)
-    var currentItem = 0
+//    let collectionMargin = CGFloat(16)
+//    let itemSpacing = CGFloat(15)
+//    let itemHeight = CGFloat(800)
+//    var itemWidth = CGFloat(0)
+//    var currentItem = 0
     
     override func viewDidLoad() {
         
@@ -205,6 +205,15 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
             cell.favoritedButton.setTitle("♡", for: .normal)
         }
         getBusinessReview(CDYelpBusiness: business)
+        
+        /*
+        // Image style!
+        cell.layer.cornerRadius = 20
+        cell.clipsToBounds = true
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        */
+        
         return cell
     }
     

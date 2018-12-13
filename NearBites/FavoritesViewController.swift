@@ -20,6 +20,8 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {
+        
+        favoritesTableView.tableFooterView = UIView()
         //Fetech objects from core data
         let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
         do {
@@ -64,8 +66,6 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         PersistenceService.saveContext()
         tableView.reloadData()
-        
-        
     }
     
     func convertImageToNSdata(image: UIImageView) -> NSData {

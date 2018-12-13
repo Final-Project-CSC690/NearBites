@@ -13,8 +13,7 @@ class BusinessDescriptionViewController: UIViewController {
    
     @IBOutlet weak var businessAdress: UILabel!
     @IBOutlet weak var review: UILabel!
-    
-    
+
     var reviewFromViewController: String!
     var address: String!
    
