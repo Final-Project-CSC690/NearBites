@@ -148,7 +148,7 @@ class ViewController: UIViewController {
                                        radius: 10000,
                                        categories: categories,
                                        locale: .english_unitedStates,
-                                       limit: 5,
+                                       limit: 30,
                                        offset: 0,
                                        sortBy: .distance,
                                        priceTiers: nil,
