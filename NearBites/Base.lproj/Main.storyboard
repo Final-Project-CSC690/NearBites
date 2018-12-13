@@ -225,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uI-XA-fNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="113.79310344827587"/>
+            <point key="canvasLocation" x="1066" y="114"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="sL3-mO-GCu">
