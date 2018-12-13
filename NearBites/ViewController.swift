@@ -26,8 +26,26 @@ struct Businesses {
     var businesses = [CDYelpBusiness]()
 }
 
-class ViewController: UIViewController {
+struct AppUtility {
     
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+        
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.orientationLock = orientation
+        }
+    }
+    
+    /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+        
+        self.lockOrientation(orientation)
+        
+        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+    }
+    
+}
+
+class ViewController: UIViewController {
     
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
@@ -80,20 +98,7 @@ class ViewController: UIViewController {
     
     //holds all returned business from search
     var businessesReturned = Businesses()
-    
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape,
-            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width  = view.frame.size.width - 20
-            layout.itemSize = CGSize(width: width, height: width/2)
-        } else if UIDevice.current.orientation.isPortrait,
-            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width  = view.frame.size.height - 20
-            let height = view.frame.size.height - 20
-            layout.itemSize = CGSize(width: width, height: height)
-        }
-    }
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -119,12 +124,14 @@ class ViewController: UIViewController {
             self.collectionView.reloadData()
         }
         
-        
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+        AppUtility.lockOrientation(.portrait)
         collectionView.reloadData()
     }
     
+
     func getBusinessReview(CDYelpBusiness: CDYelpBusiness) {
         yelpAPIClient.fetchReviews(forBusinessId: CDYelpBusiness.id,
                                    locale: nil) { (response) in
@@ -179,6 +186,19 @@ class ViewController: UIViewController {
 
         }
     }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width  = view.frame.size.width - 20
+            layout.itemSize = CGSize(width: width, height: width/2)
+        } else if UIDevice.current.orientation.isPortrait,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width  = view.frame.size.height - 20
+            let height = view.frame.size.height - 20
+            layout.itemSize = CGSize(width: width, height: height)
+        }
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -218,7 +238,6 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         // Image style!
         
         cell.layer.cornerRadius = 20
-//        cell.clipsToBounds = true
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
         

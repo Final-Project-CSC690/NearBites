@@ -138,7 +138,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Image
         businessImage.image = UIImage(data: data!)
-        
+        businessImage.contentMode = .scaleAspectFill
         // Name
         businessName.text = name
         
