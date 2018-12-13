@@ -57,7 +57,6 @@ class ViewController: UIViewController {
             businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
         } else if segue.identifier == "favoritesVCSegue" {
             guard let favoritesVC = segue.destination as? FavoritesViewController else { return }
-            
         }
     }
     
@@ -213,7 +212,6 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
  
-        
         return cell
     }
     
