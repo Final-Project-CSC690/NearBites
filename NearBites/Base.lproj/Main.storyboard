@@ -22,10 +22,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Ts-F1-BfL">
-                                <rect key="frame" x="8" y="102" width="359" height="462"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurants Near you!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQB-SV-G0b">
+                                <rect key="frame" x="0.0" y="72" width="375" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="0.59215686270000001" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Ts-F1-BfL">
+                                <rect key="frame" x="8" y="130" width="359" height="462"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="462" id="8lU-cY-0nO"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="12" bottom="0.0" right="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="mWi-jV-Izv">
                                     <size key="itemSize" width="368" height="437"/>
@@ -180,18 +188,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants Near you!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQB-SV-G0b">
-                                <rect key="frame" x="0.0" y="72" width="375" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="1" green="0.59215686270000001" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="qQB-SV-G0b" firstAttribute="top" secondItem="NmK-Wo-28o" secondAttribute="bottom" constant="8" id="9JO-bv-Cz3"/>
-                            <constraint firstAttribute="trailing" secondItem="qQB-SV-G0b" secondAttribute="trailing" id="WaP-qn-HAU"/>
-                            <constraint firstItem="qQB-SV-G0b" firstAttribute="leading" secondItem="cqt-8E-bMM" secondAttribute="leading" id="sf4-2s-qQ1"/>
+                            <constraint firstItem="1Ts-F1-BfL" firstAttribute="top" secondItem="qQB-SV-G0b" secondAttribute="bottom" constant="22" id="em4-lK-0j5"/>
+                            <constraint firstItem="1Ts-F1-BfL" firstAttribute="leading" secondItem="cqt-8E-bMM" secondAttribute="leadingMargin" constant="-8" id="h9N-F8-gRU"/>
+                            <constraint firstItem="VEL-BO-ZEm" firstAttribute="top" secondItem="1Ts-F1-BfL" secondAttribute="bottom" constant="75" id="mi3-El-SE0"/>
+                            <constraint firstItem="1Ts-F1-BfL" firstAttribute="centerX" secondItem="qQB-SV-G0b" secondAttribute="centerX" id="ur2-c3-qTV"/>
+                            <constraint firstItem="1Ts-F1-BfL" firstAttribute="centerX" secondItem="cqt-8E-bMM" secondAttribute="centerX" id="vA6-3P-c8e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="twQ-PF-OR9">
