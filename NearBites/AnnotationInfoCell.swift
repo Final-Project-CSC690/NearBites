@@ -7,8 +7,26 @@
 //
 
 import UIKit
-class ImageCellNoStringId: BaseCell
+import CDYelpFusionKit
+class RatingCell: BaseCell
 {
+    var info: Info? {
+        didSet {
+            if let imageName = info?.imageName {
+                iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+                iconImageView.tintColor = .black
+            }
+        }
+    }
+    
+    var rating : Double? {
+        didSet{
+            if let rating = rating{
+                iconImageView.image = UIImage.yelpStars(numberOfStars: starRating(rating: rating), forSize: .small)
+            }
+        }
+    }
+    
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "")
@@ -20,11 +38,37 @@ class ImageCellNoStringId: BaseCell
 
         addSubview(iconImageView)
         
-        addConstraintsWithFormat(format: "H:|-8-[v0(20)]-8-[v1]|", views: iconImageView)
+        addConstraintsWithFormat(format: "H:|-55-[v0(20)]|", views: iconImageView)
         
         addConstraintsWithFormat(format: "V:[v0(20)]", views: iconImageView)
         
         addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+    }
+    
+    func starRating (rating: Double) -> CDYelpStars {
+        if rating == 0.0 {
+            return CDYelpStars.zero
+        }else if rating == 1.0 {
+            return CDYelpStars.one
+        }else if rating == 1.5 {
+            return CDYelpStars.oneHalf
+        }else if rating == 2.0 {
+            return CDYelpStars.two
+        }else if rating == 2.5 {
+            return CDYelpStars.twoHalf
+        }else if rating == 3.0 {
+            return CDYelpStars.three
+        }else if rating == 3.5 {
+            return CDYelpStars.threeHalf
+        }else if rating == 4.0 {
+            return CDYelpStars.four
+        }else if rating == 4.5 {
+            return CDYelpStars.fourHalf
+        }else if rating == 5.0 {
+            return CDYelpStars.five
+        } else {
+            return CDYelpStars.zero
+        }
     }
 }
 class ImageCell : BaseCell
@@ -131,3 +175,5 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
     }
 }
+
+

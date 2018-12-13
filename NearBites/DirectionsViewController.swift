@@ -21,6 +21,7 @@ class DirectionsViewController: UIViewController
     var restaurantLatitude : CLLocationDegrees!
     let mapView = MKMapView()
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -66,6 +67,9 @@ class DirectionsViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         self.view.backgroundColor = blue
         self.navigationItem.title = restaurantInfo.name
+        let button1 = UIBarButtonItem(title: "Center", style: .plain, target: self, action: #selector(handleCenter))
+        self.navigationItem.rightBarButtonItem  = button1
+        
         
         super.viewWillAppear(animated)
 
@@ -85,6 +89,11 @@ class DirectionsViewController: UIViewController
        // mapView.center = view.center
 
         view.addSubview(mapView)
+    }
+    
+    @objc func handleCenter()
+    {
+        mapView.userTrackingMode = .follow
     }
     
 }

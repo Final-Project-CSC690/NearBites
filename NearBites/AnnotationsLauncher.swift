@@ -19,6 +19,7 @@ class Info: NSObject {
         self.imageName = nil
     }
     
+    
     init(name: String, imageName: String) {
         self.name = name
         self.imageName = imageName
@@ -34,7 +35,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     var currBusinessInfo : [Info]!
     let TextCellId = "TextCellId"
     let ImageCellId = "ImageCellId"
-    let ImageCellNoStringId = "ImageCellNoStringId"
+    let RatingCellId = "RatingCellId"
     let cellHeight : CGFloat = 30
     let blackView = UIView()
     var mapViewController : MapViewController?
@@ -57,7 +58,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         let zip : String = (currBusiness.location?.zipCode)!
         let fulladdress : String = address + ", " + city + " " + state + ", " + zip
         let phone : String = currBusiness.displayPhone!
-        currBusinessInfo = [Info.init(name: name), Info.init(name: fulladdress), Info.init(name: phone, imageName: "phone"), Info.init(name: "Directions", imageName:"direction")]
+        currBusinessInfo = [Info.init(name: name), Info.init(name: fulladdress), Info.init(name: "Rating"), Info.init(name: phone, imageName: "phone"), Info.init(name: "Directions", imageName:"direction")]
         
         if let window = UIApplication.shared.keyWindow
         {
@@ -136,10 +137,16 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let info = currBusinessInfo[indexPath.item]
-        if(info.imageName == nil)
+        if(info.imageName == nil && info.name != "Rating")
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextCellId, for: indexPath) as! TextCell
             cell.info = info
+            return cell
+        }
+        else if(info.name == "Rating")
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RatingCellId, for: indexPath) as! RatingCell
+            cell.rating = currBusiness.rating
             return cell
         }
         else
@@ -170,7 +177,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
         collectionView.delegate = self
         collectionView.register(TextCell.self, forCellWithReuseIdentifier: TextCellId)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellId)
-        //collectionView.register(ImageNoStringCell.self, forCellWithReuseIdentifier: ImageCellNoStringId)
+        collectionView.register(RatingCell.self, forCellWithReuseIdentifier: RatingCellId)
     }
 
 }
