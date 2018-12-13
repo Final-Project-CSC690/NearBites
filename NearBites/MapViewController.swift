@@ -34,7 +34,7 @@ class MapViewController: UIViewController
         addBusniessLocations()
         self.map.showAnnotations(self.map.annotations, animated: true)
     }
-    
+
     func addBusniessLocations()
     {
         if(businessesReturned.businesses.count == 0)
@@ -79,6 +79,5 @@ extension MapViewController : MKMapViewDelegate
             map.deselectAnnotation(annotation, animated: true)
         }
     }
-    
 }
 
