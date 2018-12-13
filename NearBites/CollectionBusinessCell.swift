@@ -145,7 +145,8 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessName.text = name
         
         // Distance
-        businessDistance.text = "\(String(round(distance*0.0006))) mi"
+        var d = distance*0.000621371
+        businessDistance.text = "\(String(format: "%.2f", d)) mi"
         
         // Review
         reviewsLabel.text = "(\(reviews)+)"

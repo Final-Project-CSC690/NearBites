@@ -83,13 +83,6 @@ class ViewController: UIViewController {
     //holds all returned business from search
     var businessesReturned = Businesses()
     
-    // Cell size and position!
-//    let collectionMargin = CGFloat(16)
-//    let itemSpacing = CGFloat(15)
-//    let itemHeight = CGFloat(800)
-//    var itemWidth = CGFloat(0)
-//    var currentItem = 0
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -206,13 +199,11 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         }
         getBusinessReview(CDYelpBusiness: business)
         
-        
         // Image style!
         cell.layer.cornerRadius = 20
         cell.clipsToBounds = true
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
- 
         
         return cell
     }
