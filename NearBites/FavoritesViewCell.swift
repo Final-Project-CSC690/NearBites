@@ -12,7 +12,6 @@ import MapKit
 import CDYelpFusionKit
 import CoreLocation
 
-
 class FavoritesViewCell: UITableViewCell {
     
     @IBOutlet weak var restaurantName: UILabel!
@@ -20,6 +19,8 @@ class FavoritesViewCell: UITableViewCell {
     @IBOutlet weak var starRating: UIImageView!
     @IBOutlet weak var restaurantImage: UIImageView!
     @IBOutlet weak var phone: UILabel!
+    
+    
     @IBAction func goButton(_ sender: UIButton) {
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
@@ -33,5 +34,14 @@ class FavoritesViewCell: UITableViewCell {
     var lat = 0.0
     var long = 0.0
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Image style!
+        restaurantImage.layer.cornerRadius = 10
+        restaurantImage.clipsToBounds = true
+        restaurantImage.layer.borderColor = UIColor.black.cgColor
+        restaurantImage.layer.borderWidth = 1
+    }
 }
 

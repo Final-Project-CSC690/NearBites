@@ -11,13 +11,29 @@ import CDYelpFusionKit
 import MapKit
 import CoreData
 
-
-
 class CollectionBusinessCell: UICollectionViewCell {
     
     var currentRestaurant: CDYelpBusiness!
     
     @IBOutlet weak var favoritedButton: UIButton!
+    
+    
+    var link = "4"
+    
+    
+    @IBAction func callButton(_ sender: UIButton) {
+        
+        print(link)
+        
+        if let phone = self.currentRestaurant.phone{
+    
+        guard let  number = URL(string: "tell://" + phone) else { return }
+        
+        //(string: "tell://" + link) else { return }
+        UIApplication.shared.open(number)
+        }
+    }
+    
     @IBAction func addToFavorites(_ sender: UIButton) {
         var tempBusiNames = [String]()
         let fetchRequest: NSFetchRequest<Business> = Business.fetchRequest()
@@ -46,8 +62,8 @@ class CollectionBusinessCell: UICollectionViewCell {
             b.name = currentRestaurant.name
             b.phoneNumber = currentRestaurant.phone
             b.address = currentRestaurant.location?.addressOne
-            b.image = convertImageToNSdata(image: self.businessImage!)
-            b.starRating = convertImageToNSdata(image: self.starRating!)
+            b.image = convertImageToNSdata(image: self.businessImage!) as Data
+            b.starRating = convertImageToNSdata(image: self.starRating!) as Data
             guard let lat = currentRestaurant.coordinates?.latitude else { return }
             guard let long = currentRestaurant.coordinates?.longitude else { return }
             b.long = long
@@ -68,6 +84,7 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessPrice: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBAction func DirectionsButton(_ sender: UIButton) {
+        
         let latitude:CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
@@ -104,6 +121,9 @@ class CollectionBusinessCell: UICollectionViewCell {
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
         print("from collection business cell lat: \(lat) , long: \(long)")
+        
+        
+        self.link = phone
         
         // image String preparation!
         let url = URL(string: image.absoluteString)
@@ -157,7 +177,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessImage.layer.cornerRadius = 20
         businessImage.clipsToBounds = true
         businessImage.layer.borderColor = UIColor.black.cgColor
-        businessImage.layer.borderWidth = 10
+        businessImage.layer.borderWidth = 1
         
         // Cell Style!
         self.layer.cornerRadius = 20

@@ -10,8 +10,6 @@
 		37CB3C2580265235A26D3603 /* Pods_NearBites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474EA37232F090DCBF268B61 /* Pods_NearBites.framework */; };
 		7803BBA221C098AF00047A04 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803BBA121C098AF00047A04 /* PersistenceService.swift */; };
 		7803BBA421C0AB9100047A04 /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803BBA321C0AB9100047A04 /* FavoritesViewCell.swift */; };
-		7803BBAD21C0C4A300047A04 /* Business+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803BBAB21C0C4A300047A04 /* Business+CoreDataProperties.swift */; };
-		7803BBAE21C0C4A300047A04 /* Business+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803BBAC21C0C4A300047A04 /* Business+CoreDataClass.swift */; };
 		785E227121BE59C1004D74F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 785E227021BE59C1004D74F8 /* Images.xcassets */; };
 		78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C45921A3BA310090A2D8 /* AppDelegate.swift */; };
 		78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6C45B21A3BA310090A2D8 /* ViewController.swift */; };
@@ -56,8 +54,6 @@
 		6D47E5C717A9C272A268AF9C /* Pods-NearBites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBites.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NearBites/Pods-NearBites.debug.xcconfig"; sourceTree = "<group>"; };
 		7803BBA121C098AF00047A04 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		7803BBA321C0AB9100047A04 /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
-		7803BBAB21C0C4A300047A04 /* Business+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Business+CoreDataProperties.swift"; path = "/Users/paulancajima/Desktop/NearBites/NearBites/Business+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		7803BBAC21C0C4A300047A04 /* Business+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Business+CoreDataClass.swift"; path = "/Users/paulancajima/Desktop/NearBites/NearBites/Business+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		785E227021BE59C1004D74F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78A6C45621A3BA310090A2D8 /* NearBites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearBites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A6C45921A3BA310090A2D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,8 +146,6 @@
 				F4B8835F21BEF53A003FB31B /* AnnotationInfoCell.swift */,
 				F4AD11A121BEA168008D5DC8 /* AnnotationsLauncher.swift */,
 				78A6C45921A3BA310090A2D8 /* AppDelegate.swift */,
-				7803BBAC21C0C4A300047A04 /* Business+CoreDataClass.swift */,
-				7803BBAB21C0C4A300047A04 /* Business+CoreDataProperties.swift */,
 				9CF08E6B21B1E13200D0CC71 /* BusinessDescriptionViewController.swift */,
 				9CEFEEDB21AD185200B5B54D /* CollectionBusinessCell.swift */,
 				9CB8D79E21BF24C500873142 /* Constant.swift */,
@@ -385,7 +379,6 @@
 			files = (
 				9CED666221BF84FC0007D6B9 /* EventsViewController.swift in Sources */,
 				9C429EEF21AF3D8100F248D8 /* MainViewController.swift in Sources */,
-				7803BBAE21C0C4A300047A04 /* Business+CoreDataClass.swift in Sources */,
 				7803BBA421C0AB9100047A04 /* FavoritesViewCell.swift in Sources */,
 				78BD4F1121C077DE001A2F23 /* FavoritesViewController.swift in Sources */,
 				78A6C45C21A3BA310090A2D8 /* ViewController.swift in Sources */,
@@ -393,7 +386,6 @@
 				78A6C45A21A3BA310090A2D8 /* AppDelegate.swift in Sources */,
 				78A6C46221A3BA310090A2D8 /* NearBites.xcdatamodeld in Sources */,
 				7803BBA221C098AF00047A04 /* PersistenceService.swift in Sources */,
-				7803BBAD21C0C4A300047A04 /* Business+CoreDataProperties.swift in Sources */,
 				9CEF7CAB21B51C8800809C3D /* SettingViewController.swift in Sources */,
 				78BD4F0F21C063EF001A2F23 /* Constant.swift in Sources */,
 				F4B8836021BEF53A003FB31B /* AnnotationInfoCell.swift in Sources */,
