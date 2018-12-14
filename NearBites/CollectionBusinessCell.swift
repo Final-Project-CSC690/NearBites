@@ -17,18 +17,13 @@ class CollectionBusinessCell: UICollectionViewCell {
     
     @IBOutlet weak var favoritedButton: UIButton!
     
+    var link = "1"
     
-    var link = "4"
-    @IBAction func callButton(_ sender: UIButton) {
-        
-        print(link)
-        
-        if let phone = self.currentRestaurant.phone{
-    
-        guard let  number = URL(string: "tell://" + phone) else { return }
-        
-        //(string: "tell://" + link) else { return }
-        UIApplication.shared.open(number)
+
+    @IBAction func callButton(_ sender: Any) {
+
+        if let url = URL(string: "tel://\(link)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -118,8 +113,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
-        print("from collection business cell lat: \(lat) , long: \(long)")
-        
+        //print("from collection business cell lat: \(lat) , long: \(long)")
         
         self.link = phone
         
@@ -131,7 +125,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         businessPrice.text = price
         
         // Phone
-        self.phone.text = phone
+        //self.phone.text = phone
         
         // Adress
         businessAddress.text = address.addressOne!
@@ -182,7 +176,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         self.layer.cornerRadius = 20
         
         // Phone style
-        phone.adjustsFontSizeToFitWidth = true 
+        //phone.adjustsFontSizeToFitWidth = true
         
     }
 }

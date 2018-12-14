@@ -68,3 +68,10 @@ extension MainViewController: CLLocationManagerDelegate {
         }
     }
 }
+
+extension UIButton{
+    override open func didMoveToWindow() {
+        self.layer.cornerRadius = 15
+    }
+}
+
