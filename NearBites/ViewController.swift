@@ -59,6 +59,7 @@ class ViewController: UIViewController {
     
     // View Map Button (To display all restaurants at once
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
+        print("helloasdadas")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +74,7 @@ class ViewController: UIViewController {
             businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
         } else if segue.identifier == "favoritesVCSegue" {
             guard let favoritesVC = segue.destination as? FavoritesViewController else { return }
+            
         }
     }
     
@@ -97,7 +99,7 @@ class ViewController: UIViewController {
     
     //holds all returned business from search
     var businessesReturned = Businesses()
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -111,7 +113,7 @@ class ViewController: UIViewController {
         // Collection view dataSource
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        
         //Location Delgate, Request for authorization, Update every 300 meters(around 1 block)
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -130,7 +132,7 @@ class ViewController: UIViewController {
         collectionView.reloadData()
     }
     
-
+    
     func getBusinessReview(CDYelpBusiness: CDYelpBusiness) {
         yelpAPIClient.fetchReviews(forBusinessId: CDYelpBusiness.id,
                                    locale: nil) { (response) in
@@ -182,7 +184,7 @@ class ViewController: UIViewController {
                                                 self.group.leave()
                                             }
                                         }
-
+                                        
         }
     }
     
@@ -239,9 +241,22 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         cell.layer.cornerRadius = 20
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
-
+        cell.viewcontroller = self
+        
         return cell
     }
+    
+    func showControllerForDirections(currBusiness: CDYelpBusiness) {
+        let directionsViewController : DirectionsViewController = {
+            let directionVC = DirectionsViewController()
+            directionVC.restaurantInfo = currBusiness
+            directionVC.currLatitude = latitude
+            directionVC.currLongitude = longitude
+            return directionVC
+        }()
+        navigationController?.pushViewController(directionsViewController, animated: true)
+    }
+    
 }
 
 

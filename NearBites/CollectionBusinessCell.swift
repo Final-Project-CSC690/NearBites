@@ -12,16 +12,16 @@ import MapKit
 import CoreData
 
 class CollectionBusinessCell: UICollectionViewCell {
-    
+    var viewcontroller : ViewController!
     var currentRestaurant: CDYelpBusiness!
+    
     
     @IBOutlet weak var favoritedButton: UIButton!
     
-    var link = "1"
     
-
-    @IBAction func callButton(_ sender: Any) {
-
+    var link = "4"
+    @IBAction func callButton(_ sender: UIButton) {
+        
         if let url = URL(string: "tel://\(link)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -77,15 +77,15 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessPrice: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        
-        let latitude:CLLocationDegrees = lat
-        let longitude: CLLocationDegrees = long
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapitem = MKMapItem(placemark: placemark)
-        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        mapitem.name = businessName.text
-        mapitem.openInMaps(launchOptions: options)
+        viewcontroller.showControllerForDirections(currBusiness: currentRestaurant)
+        //        let latitude:CLLocationDegrees = lat
+        //        let longitude: CLLocationDegrees = long
+        //        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        //        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        //        let mapitem = MKMapItem(placemark: placemark)
+        //        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        //        mapitem.name = businessName.text
+        //        mapitem.openInMaps(launchOptions: options)
     }
     
     var lat = 0.0
@@ -113,7 +113,8 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
-        //print("from collection business cell lat: \(lat) , long: \(long)")
+        print("from collection business cell lat: \(lat) , long: \(long)")
+        
         
         self.link = phone
         
@@ -124,8 +125,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         // Price
         businessPrice.text = price
         
-        // Phone
-        //self.phone.text = phone
+       
         
         // Adress
         businessAddress.text = address.addressOne!
@@ -175,9 +175,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         // Cell Style!
         self.layer.cornerRadius = 20
         
-        // Phone style
-        //phone.adjustsFontSizeToFitWidth = true
         
     }
 }
-
