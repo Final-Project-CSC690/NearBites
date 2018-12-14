@@ -12,15 +12,14 @@ import MapKit
 import CoreData
 
 class CollectionBusinessCell: UICollectionViewCell {
-    
+    var viewcontroller : ViewController!
     var currentRestaurant: CDYelpBusiness!
+    
     
     @IBOutlet weak var favoritedButton: UIButton!
     
     
     var link = "4"
-    
-    
     @IBAction func callButton(_ sender: UIButton) {
         
         print(link)
@@ -84,15 +83,15 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessPrice: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        
-        let latitude:CLLocationDegrees = lat
-        let longitude: CLLocationDegrees = long
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapitem = MKMapItem(placemark: placemark)
-        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        mapitem.name = businessName.text
-        mapitem.openInMaps(launchOptions: options)
+        viewcontroller.showControllerForDirections(currBusiness: currentRestaurant)
+//        let latitude:CLLocationDegrees = lat
+//        let longitude: CLLocationDegrees = long
+//        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+//        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+//        let mapitem = MKMapItem(placemark: placemark)
+//        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+//        mapitem.name = businessName.text
+//        mapitem.openInMaps(launchOptions: options)
     }
     
     var lat = 0.0
@@ -140,7 +139,7 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Image
         businessImage.image = UIImage(data: data!)
-        
+        businessImage.contentMode = .scaleAspectFill
         // Name
         businessName.text = name
         
