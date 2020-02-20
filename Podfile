@@ -6,6 +6,5 @@ target 'NearBites' do
   pod 'YelpAPI', '~> 2.0'
   pod 'Alamofire', '~> 4.7'
   pod 'CDYelpFusionKit', '1.5.0'
-  pod 'MapboxNavigation', '~> 0.26.0'
 
 end

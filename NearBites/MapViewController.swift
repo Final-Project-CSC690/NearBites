@@ -17,7 +17,7 @@ import MapKit
 class MapViewController: UIViewController
 {
     @IBOutlet weak var map: MKMapView!
-    var businessesReturned: Businesses!
+    var businessesReturned: [CDYelpBusiness]!
     var annotation: [MKPointAnnotation] = []
     var tempAnnotation : MKPointAnnotation!
     lazy var annotationLauncher : AnnotationLauncher = {
@@ -37,13 +37,13 @@ class MapViewController: UIViewController
 
     func addBusniessLocations()
     {
-        if(businessesReturned.businesses.count == 0)
+        if(businessesReturned.count == 0)
         {
             return
         }
         else
         {
-            for business in businessesReturned.businesses
+            for business in businessesReturned
             {
                 tempAnnotation = MKPointAnnotation()
                 tempAnnotation.coordinate = CLLocationCoordinate2DMake((business.coordinates?.latitude)!, (business.coordinates?.longitude)!)
@@ -54,17 +54,6 @@ class MapViewController: UIViewController
         }
     }
     
-    func showControllerForDirections(currBusiness: CDYelpBusiness) {
-        let directionsViewController : DirectionsViewController = {
-            let directionVC = DirectionsViewController()
-            directionVC.restaurantInfo = currBusiness
-            directionVC.currLatitude = currLatitude
-            directionVC.currLongitude = currLongitude
-            return directionVC
-        }()
-        navigationController?.pushViewController(directionsViewController, animated: true)
-    }
-
 }
 
 extension MapViewController : MKMapViewDelegate

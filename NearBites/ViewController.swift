@@ -22,10 +22,6 @@ import MapKit
 import CoreData
 
 
-struct Businesses {
-    var businesses = [CDYelpBusiness]()
-}
-
 struct AppUtility {
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
@@ -50,6 +46,12 @@ class ViewController: UIViewController {
     //API client key. Remember to make a Constant.swift containing your own constant apikey this file will be ignored by github
     let yelpAPIClient = CDYelpAPIClient(apiKey: Constant.init().APIKey)
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var businessImageDictionary = (UIApplication.shared.delegate as! AppDelegate).businessImageDictionary
+    
+    var activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Reload Button
@@ -59,7 +61,7 @@ class ViewController: UIViewController {
     
     // View Map Button (To display all restaurants at once
     @IBAction func viewMapButton(_ sender: UIBarButtonItem) {
-        print("helloasdadas")
+        //        print("hello")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +73,7 @@ class ViewController: UIViewController {
         } else if segue.identifier == "businessDescriptionSegue" {
             guard let businessDesriptionVC = segue.destination as? BusinessDescriptionViewController else { return }
             businessDesriptionVC.reviewFromViewController = review
-            businessDesriptionVC.address = businessesReturned.businesses.first?.location?.addressOne
+            businessDesriptionVC.address = businessesReturned.first?.location?.addressOne
         } else if segue.identifier == "favoritesVCSegue" {
             guard let favoritesVC = segue.destination as? FavoritesViewController else { return }
             
@@ -83,6 +85,9 @@ class ViewController: UIViewController {
     
     // Search term been passed from Main View
     var term: String?
+    
+    // Search number of results
+    var numberOfResults: Int?
     
     // Filter Search Category to Restaurants!
     var categories = [CDYelpBusinessCategoryFilter.restaurants]
@@ -98,11 +103,18 @@ class ViewController: UIViewController {
     var latitude = 0.0
     
     //holds all returned business from search
-    var businessesReturned = Businesses()
+    var businessesReturned = [CDYelpBusiness]()
+    
+    //data loading for when users get to the last business
+    var dataLoading = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        var businessImageDictionary = appDelegate.businessImageDictionary
+        
+        activityIndicatorViewSetup()
         
         //function that gets all nearby businesses
         getBusinesses(yelpAPIClient: yelpAPIClient)
@@ -124,14 +136,20 @@ class ViewController: UIViewController {
         self.group.notify(queue: .main) {
             self.collectionView.reloadData()
         }
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        
         AppUtility.lockOrientation(.portrait)
         collectionView.reloadData()
     }
     
+    func activityIndicatorViewSetup(){
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
     
     func getBusinessReview(CDYelpBusiness: CDYelpBusiness) {
         yelpAPIClient.fetchReviews(forBusinessId: CDYelpBusiness.id,
@@ -146,13 +164,12 @@ class ViewController: UIViewController {
     
     func getBusinesses(yelpAPIClient: CDYelpAPIClient) {
         self.group.enter()
-        
+        activityIndicator.startAnimating()
         // Cancel any API requests previously made
         yelpAPIClient.cancelAllPendingAPIRequests()
         
         // Coordinates before search!
         print("lat : \(self.latitude) long: \(self.longitude)")
-        
         
         // Query Yelp Fusion API for business results
         yelpAPIClient.searchBusinesses(byTerm: term,
@@ -162,7 +179,7 @@ class ViewController: UIViewController {
                                        radius: 10000,
                                        categories: categories,
                                        locale: .english_unitedStates,
-                                       limit: 30,
+                                       limit: self.numberOfResults ?? 5,
                                        offset: 0,
                                        sortBy: .distance,
                                        priceTiers: nil,
@@ -174,17 +191,31 @@ class ViewController: UIViewController {
                                             let businesses = response.businesses,
                                             businesses.count > 0 {
                                             
-                                            DispatchQueue.main.async {
+                                            DispatchQueue.global(qos: .userInitiated).async {
                                                 //sort businesses by distance because returned businesses may not be sorted
                                                 if businesses.count > 1 {
-                                                    self.businessesReturned.businesses = businesses.sorted(by: { ($0.distance!.isLess(than: $1.distance!))})
+                                                    self.businessesReturned = businesses.sorted(by: { ($0.distance!.isLess(than: $1.distance!))})
                                                 } else {
-                                                    self.businessesReturned.businesses = businesses
+                                                    self.businessesReturned = businesses
+                                                }
+                                                for business in self.businessesReturned {
+                                                    if self.businessImageDictionary[business.name!] == nil {
+                                                        let data = try? Data(contentsOf: business.imageUrl!)
+                                                        if let imageData = data {
+                                                            let image = UIImage(data: imageData)
+                                                            self.businessImageDictionary[business.name!] = image
+                                                        }
+                                                    }
+                                                }
+                                                self.appDelegate.businessImageDictionary = self.businessImageDictionary
+                                                DispatchQueue.main.async {
+                                                    self.activityIndicator.stopAnimating()
+                                                    self.collectionView.reloadData()
+                                                    self.dataLoading = false
                                                 }
                                                 self.group.leave()
                                             }
                                         }
-                                        
         }
     }
     
@@ -198,6 +229,22 @@ class ViewController: UIViewController {
             let width  = view.frame.size.height - 20
             let height = view.frame.size.height - 20
             layout.itemSize = CGSize(width: width, height: height)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastElement = self.businessesReturned.count - 1
+        let business = self.businessesReturned[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
+        
+        if numberOfResults == nil {
+            numberOfResults = 5
+        }
+        
+        if indexPath.row == lastElement && (self.businessesReturned.count + 5 < 50) && !dataLoading {
+            dataLoading = true
+            numberOfResults! += 5
+            self.getBusinesses(yelpAPIClient: self.yelpAPIClient)
         }
     }
 }
@@ -218,17 +265,17 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
-extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.businessesReturned.businesses.count
+        return self.businessesReturned.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let business = self.businessesReturned.businesses[indexPath.row]
+        let business = self.businessesReturned[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionBusinessCell
         cell.starRating.image = UIImage.yelpStars(numberOfStars: starRating(rating: business.rating!), forSize: .small)
         cell.setBusinessDescription(business: business)
+        
         if inFavorites(address: (business.location?.addressOne!)!){
             cell.favoritedButton.setTitle("❤️", for: .normal)
         } else {
@@ -237,24 +284,29 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
         getBusinessReview(CDYelpBusiness: business)
         
         // Image style!
+        if businessImageDictionary[business.name!] != nil {
+            cell.businessImage.image = businessImageDictionary[business.name!]
+        } else {
+            cell.businessImage.image = UIImage(named: "logo")
+        }
         
         cell.layer.cornerRadius = 20
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
-        cell.viewcontroller = self
+        cell.layer.shouldRasterize = true
+        cell.layer.contentsScale = UIScreen.main.scale
         
         return cell
     }
     
-    func showControllerForDirections(currBusiness: CDYelpBusiness) {
-        let directionsViewController : DirectionsViewController = {
-            let directionVC = DirectionsViewController()
-            directionVC.restaurantInfo = currBusiness
-            directionVC.currLatitude = latitude
-            directionVC.currLongitude = longitude
-            return directionVC
-        }()
-        navigationController?.pushViewController(directionsViewController, animated: true)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemWidth = collectionView.bounds.width
+        let itemHeight = collectionView.bounds.height
+        return CGSize(width: itemWidth, height: itemHeight)
+        
     }
     
 }

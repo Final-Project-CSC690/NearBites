@@ -29,7 +29,7 @@ class Info: NSObject {
 class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     
-    var businessesReturned : Businesses!
+    var businessesReturned : [CDYelpBusiness]!
     var currBusiness : CDYelpBusiness!
     var annotationView: MKAnnotationView!
     var currBusinessInfo : [Info]!
@@ -101,8 +101,14 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
             }
         }) { (completed: Bool) in
                 if info.name == "Directions" {
-                    self.mapViewController?.showControllerForDirections(currBusiness: self.currBusiness)
-                }
+                    let latitude:CLLocationDegrees = self.currBusiness.coordinates!.latitude!
+                    let longitude: CLLocationDegrees = self.currBusiness.coordinates!.longitude!
+                    let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                    let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                    let mapitem = MKMapItem(placemark: placemark)
+                    let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                    mapitem.name = self.currBusiness.name
+                    mapitem.openInMaps(launchOptions: options)                }
                 else if info.imageName == "phone"
                 {
                     if let phoneString = self.currBusiness.phone
@@ -117,7 +123,7 @@ class AnnotationLauncher : NSObject, UICollectionViewDataSource, UICollectionVie
     
     func setCurrBusiness()
     {
-        for businesses in self.businessesReturned!.businesses
+        for businesses in self.businessesReturned
         {
             if ((annotationView.annotation?.title)!! == businesses.name)
             {

@@ -12,14 +12,11 @@ import MapKit
 import CoreData
 
 class CollectionBusinessCell: UICollectionViewCell {
-    var viewcontroller : ViewController!
-    var currentRestaurant: CDYelpBusiness!
     
+    var currentRestaurant: CDYelpBusiness!
     
     @IBOutlet weak var favoritedButton: UIButton!
     
-    
-    var link = "4"
     @IBAction func callButton(_ sender: UIButton) {
         
         if let url = URL(string: "tel://\(link)") {
@@ -77,15 +74,14 @@ class CollectionBusinessCell: UICollectionViewCell {
     @IBOutlet weak var businessPrice: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBAction func DirectionsButton(_ sender: UIButton) {
-        viewcontroller.showControllerForDirections(currBusiness: currentRestaurant)
-        //        let latitude:CLLocationDegrees = lat
-        //        let longitude: CLLocationDegrees = long
-        //        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        //        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        //        let mapitem = MKMapItem(placemark: placemark)
-        //        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        //        mapitem.name = businessName.text
-        //        mapitem.openInMaps(launchOptions: options)
+                let latitude:CLLocationDegrees = lat
+                let longitude: CLLocationDegrees = long
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapitem = MKMapItem(placemark: placemark)
+                let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                mapitem.name = businessName.text
+                mapitem.openInMaps(launchOptions: options)
     }
     
     var lat = 0.0
@@ -113,26 +109,13 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         self.lat = coordinatesLatitude
         self.long = coordinatesLongitude
-        print("from collection business cell lat: \(lat) , long: \(long)")
-        
-        
-        self.link = phone
-        
-        // image String preparation!
-        let url = URL(string: image.absoluteString)
-        let data = try? Data(contentsOf: url!)
         
         // Price
         businessPrice.text = price
         
-       
-        
         // Adress
         businessAddress.text = address.addressOne!
         
-        // Image
-        businessImage.image = UIImage(data: data!)
-        businessImage.contentMode = .scaleAspectFill
         // Name
         businessName.text = name
         
@@ -140,8 +123,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         var d = distance*0.000621371
         businessDistance.text = "\(String(format: "%.2f", d)) mi"
         
-        // Review
-        reviewsLabel.text = "(\(reviews)+)"
     }
     
     override func layoutSubviews() {
@@ -174,7 +155,6 @@ class CollectionBusinessCell: UICollectionViewCell {
         
         // Cell Style!
         self.layer.cornerRadius = 20
-        
-        
+
     }
 }
