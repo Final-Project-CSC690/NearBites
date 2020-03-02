@@ -136,6 +136,8 @@ class ViewController: UIViewController {
         self.group.notify(queue: .main) {
             self.collectionView.reloadData()
         }
+        
+//        centerItemsInCollectionView(cellWidth: 364, numberOfItems: Double(businessesReturned.count), spaceBetweenCell: 10, collectionView: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -308,6 +310,14 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate,
         return CGSize(width: itemWidth, height: itemHeight)
         
     }
+    
+   func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+       let totalWidth = cellWidth * numberOfItems
+       let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+       let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+       let rightInset = leftInset
+       return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+   }
     
 }
 

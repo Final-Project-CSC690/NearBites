@@ -61,6 +61,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         numberOfResults.layer.masksToBounds = true
         numberOfResults.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         numberOfResults.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        numberOfResults.font = .systemFont(ofSize: 17)
         
         numberOfResults.delegate = self
     }
